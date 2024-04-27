@@ -1,0 +1,80 @@
+{
+  "name": "auction-house",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Semester project 2 website",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 8080 --host 127.0.0.1 --open",
+    "build": "vite build",
+    "preview": "vite preview",
+    "docs": "jsdoc -c ./conf.json -r",
+    "format": "prettier -w src/**/*.js",
+    "unit-test": "vitest run",
+    "test-watch": "vitest",
+    "e2e-test": "npm run test-e2e",
+    "test-e2e": "cypress open",
+    "test-e2e-cli": "cypress run",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FP22FD/Auction-House-SP2-CA.git"
+  },
+  "keywords": [
+    "CSS",
+    "CSS",
+    "Frameworks",
+    "Bootstrap",
+    "SCSS",
+    "SASS",
+    "vitest",
+    "cypress",
+    "jest"
+  ],
+  "author": "Fernanda Pereira Gomes <ferper70123@stud.noroff.no>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FP22FD/Auction-House-SP2-CA/issues"
+  },
+  "homepage": "https://github.com/FP22FD/Auction-House-SP2-CA#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "cli-table": "^0.3.11",
+    "dompurify": "^3.0.11"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.1.1",
+    "cypress": "^13.8.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-cypress": "^3.0.2",
+    "globals": "^15.0.0",
+    "husky": "^9.0.11",
+    "jsdoc": "^4.0.2",
+    "jsdom": "^24.0.0",
+    "lint-staged": "^15.2.2",
+    "npm": "^10.6.0",
+    "prettier": "^3.2.5",
+    "sass": "^1.75.0",
+    "vite": "^5.2.0",
+    "vitest": "^1.5.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.mjs": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.html": [
+      "prettier --write"
+    ],
+    "*.scss": [
+      "prettier --write"
+    ]
+  }
+}
