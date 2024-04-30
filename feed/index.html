@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Auction House app. Increase your popularity by sharing your opinion with the world."
+    />
+    <title>Auction House | Listings page</title>
+    <link type="image/x-icon" rel="stylesheet" href="/favicon.ico" />
+
+    <script type="module" src="/src/js/shared/logout.mjs"></script>
+    <script type="module" src="/src/js/feed/feedPosts.mjs"></script>
+    <script type="module" src="/src/js/feed/createPost.mjs"></script>
+    <script type="module" src="/src/js/feed/search.mjs"></script>
+  </head>
+
+  <body>
+    <header class="border-bottom border-1 bg-primary">
+      <nav class="navbar navbar-expand-lg sticky-top mx-3">
+        <div class="container-fluid d-flex">
+          <div>
+            <a class="navbar-brand object-fit-cover" href="/feed/index.html">
+              <img src="/logo.svg" alt="logo" height="50" />
+            </a>
+          </div>
+
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navMenuHamburger"
+          >
+            <div class="navbar-nav">
+              <a class="nav-link" aria-current="page" href="/profile/index.html"
+                >Profile page</a
+              >
+              <a class="nav-link active" href="/feed/index.html"
+                >Listings page</a
+              >
+
+              <button
+                type="button"
+                id="logout"
+                class="btn nav-link text-start shadow-none"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenuHamburger"
+            aria-controls="navMenuHamburger"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container bg-white">
+      <main class="row my-5">
+        <div
+          class="d-flex flex-column text-center mb-5 col-lg-10 offset-lg-1"
+          role="search"
+        >
+          <form action="/feed" method="get">
+            <div class="input-group mb-3">
+              <input
+                id="search"
+                type="search"
+                class="form-control"
+                placeholder="What are you looking for?"
+                aria-label="Search"
+                required
+                minlength="1"
+                maxlength="45"
+                name="search"
+              />
+              <button
+                id="btn"
+                class="btn btn-light border"
+                type="submit"
+                aria-label="Search"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+          <div id="errorSearch" class="error invalid-feedback d-none"></div>
+        </div>
+
+        <div class="col-lg-6 order-2 order-lg-1">
+          <div class="d-flex justify-content-between mb-3">
+            <ul class="nav my-1">
+              <li class="nav-item">
+                <h1 class="fs-6 border-bottom border-primary border-5 px-1">
+                  Posts
+                </h1>
+              </li>
+            </ul>
+            <div class="d-flex flex-column text-center" role="search">
+              <div class="input-group input-group-sm">
+                <input
+                  id="filter"
+                  type="search"
+                  class="form-control"
+                  placeholder="Filter"
+                  aria-label="filter"
+                  name="search"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            id="spinnerPosts"
+            class="gap-1 text-center my-5 py-5 justify-content-center d-none"
+          >
+            <div
+              class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
+              role="status"
+            ></div>
+            <div
+              class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+              role="status"
+            ></div>
+            <div
+              class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+              role="status"
+            ></div>
+          </div>
+
+          <div
+            id="errorPosts"
+            class="error invalid-feedback text-center my-5 py-5 d-none"
+          ></div>
+
+          <div class="justify-content-center">
+            <div id="posts"></div>
+
+            <template id="post">
+              <article class="card mb-3 border-0 shadow-sm">
+                <div class="card-header border-0 vstack gap-2 bg-white">
+                  <div class="hstack gap-2">
+                    <img
+                      id="authorImg"
+                      src="#"
+                      alt="User image"
+                      class="rounded-circle mw-100 object-fit-cover me-1"
+                      width="50"
+                      height="50"
+                    />
+                    <div class="flex-fill">
+                      <h5 class="mb-1"></h5>
+                      <p id="datePost" class="card-text">
+                        <small class="text-body-secondary"></small>
+                      </p>
+                    </div>
+                    <div>
+                      <button
+                        id="buttonClose"
+                        type="button"
+                        class="btn-close d-none"
+                        aria-label="Close"
+                      ></button>
+
+                      <button
+                        id="edit"
+                        type="button"
+                        role="button"
+                        class="btn btn-outline-primary shadow-sm"
+                      >
+                        Place bid
+                      </button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p id="bodyTitle" class="fw-bold"></p>
+                    <div>
+                      <p id="bodyPost" class="card-text">
+                        <span id="viewPost"></span>
+                      </p>
+                      <a>
+                        <img
+                          id="postImg"
+                          src="#"
+                          class="card-img-top rounded-bottom-1 max-vh-50 object-fit-cover"
+                          alt="Post image"
+                        />
+                        <span id="alt-img"></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-body d-flex justify-content-between"></div>
+              </article>
+            </template>
+          </div>
+        </div>
+
+        <aside class="col-lg-5 order-1 order-lg-2 offset-lg-1 mb-5">
+          <form action="#" method="post" id="createPost">
+            <div class="card mb-3 border-0 shadow-sm">
+              <div class="card-title text-center h2">Create a listing</div>
+              <div class="card-header hstack border-0 gap-2 bg-white">
+                <img
+                  id="author-image"
+                  src="#"
+                  alt="User image"
+                  class="rounded-circle img-fluid me-1"
+                  width="50"
+                />
+                <h5 id="author-name" class="mb-1 h6"></h5>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <div class="mb-3">
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="postTitle"
+                      placeholder="Title"
+                      aria-label="Title"
+                      required
+                      minlength="1"
+                      maxlength="45"
+                      name="title"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="postSubTitle"
+                      placeholder="Deadline"
+                      aria-label="SubTitle"
+                      required
+                      minlength="1"
+                      maxlength="45"
+                      name="SubTitle"
+                    />
+                  </div>
+
+                  <textarea
+                    class="form-control"
+                    id="postText"
+                    rows="3"
+                    placeholder="Describe the item"
+                    aria-label="Body"
+                    minlength="5"
+                    maxlength="280"
+                    name="textarea"
+                  ></textarea>
+                  <span id="char" class="form-text"></span>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-text">
+                    <i class="bi bi-images"></i>
+                  </div>
+                  <input
+                    type="url"
+                    id="postImageUrl"
+                    class="form-control"
+                    placeholder="Paste the picture url"
+                    aria-label="Image url"
+                  />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-text">
+                    <i class="bi bi-images"></i>
+                  </div>
+                  <input
+                    type="url"
+                    id="postImageUrl"
+                    class="form-control"
+                    placeholder="Paste the picture url"
+                    aria-label="Image url"
+                  />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-text">
+                    <i class="bi bi-images"></i>
+                  </div>
+                  <input
+                    type="url"
+                    id="postImageUrl"
+                    class="form-control"
+                    placeholder="Paste the picture url"
+                    aria-label="Image url"
+                  />
+                </div>
+
+                <div
+                  id="errorCreatePost"
+                  class="error invalid-feedback d-none"
+                ></div>
+                <div id="statusMsg" class="valid-feedback"></div>
+
+                <div
+                  id="spinnerCreatePost"
+                  class="align-self-center gap-3 m-3 d-none"
+                >
+                  <div
+                    class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
+                    role="status"
+                  ></div>
+                  <div
+                    class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+                    role="status"
+                  ></div>
+                  <div
+                    class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+                    role="status"
+                  ></div>
+                </div>
+              </div>
+
+              <div
+                class="card-footer border-0 hstack gap-3 justify-content-end bg-white"
+              >
+                <button type="reset" class="btn btn-light">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+              </div>
+            </div>
+          </form>
+        </aside>
+      </main>
+    </div>
+    <footer class="text-white text-center bg-secondary vstack py-3">
+      <span> Copyright© 2024 Auction House.</span>
+      <span>All Rights Reserved</span>
+    </footer>
+  </body>
+</html>
