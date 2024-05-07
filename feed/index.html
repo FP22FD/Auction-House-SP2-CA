@@ -91,12 +91,12 @@
           <div id="errorSearch" class="error invalid-feedback d-none"></div>
         </div>
 
-        <div class="col-lg-6 order-2 order-lg-1">
+        <div class="col-lg-6 order-2 order-lg-1 min-vh-100">
           <div class="d-flex justify-content-between mb-3">
             <ul class="nav my-1">
               <li class="nav-item">
                 <h1 class="fs-6 border-bottom border-primary border-5 px-1">
-                  Posts
+                  Listings
                 </h1>
               </li>
             </ul>
@@ -115,7 +115,7 @@
           </div>
 
           <div
-            id="spinnerPosts"
+            id="spinnerListings"
             class="gap-1 text-center my-5 py-5 justify-content-center d-none"
           >
             <div
@@ -133,19 +133,21 @@
           </div>
 
           <div
-            id="errorPosts"
+            id="errorListings"
             class="error invalid-feedback text-center my-5 py-5 d-none"
           ></div>
 
           <div class="justify-content-center">
-            <div id="posts"></div>
+            <div id="listings"></div>
 
-            <template id="post">
-              <article class="card mb-3 border-0 shadow-sm">
+            <template id="listing">
+              <article class="card mb-3 border-0 shadow-sm" data-id="">
+                <p id="deadline" class="text-secondary align-self-end m-3"></p>
+
                 <div class="card-header border-0 vstack gap-2 bg-white">
                   <div class="hstack gap-2">
                     <img
-                      id="authorImg"
+                      id="sellerImg"
                       src="#"
                       alt="User image"
                       class="rounded-circle mw-100 object-fit-cover me-1"
@@ -154,7 +156,8 @@
                     />
                     <div class="flex-fill">
                       <h5 class="mb-1"></h5>
-                      <p id="datePost" class="card-text">
+                      <h3 class="mb-1"></h3>
+                      <p id="dateListing" class="card-text">
                         <small class="text-body-secondary"></small>
                       </p>
                     </div>
@@ -179,19 +182,15 @@
 
                   <div>
                     <p id="bodyTitle" class="fw-bold"></p>
-                    <div>
-                      <p id="bodyPost" class="card-text">
-                        <span id="viewPost"></span>
+
+                    <div class="order-3">
+                      <p id="bodyListing" class="card-text">
+                        <span id="viewListing"></span>
                       </p>
-                      <a>
-                        <img
-                          id="postImg"
-                          src="#"
-                          class="card-img-top rounded-bottom-1 max-vh-50 object-fit-cover"
-                          alt="Post image"
-                        />
-                        <span id="alt-img"></span>
-                      </a>
+
+                      <div id="listingImgs">
+                        <!-- carousel -->
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -199,22 +198,56 @@
                 <div class="card-body d-flex justify-content-between"></div>
               </article>
             </template>
+
+            <template id="slider-carousel">
+              <div id="carousel" class="carousel slide">
+                <div class="carousel-inner">
+                  <!-- images from js -->
+                </div>
+
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carousel"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carousel"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </template>
           </div>
         </div>
 
         <aside class="col-lg-5 order-1 order-lg-2 offset-lg-1 mb-5">
-          <form action="#" method="post" id="createPost">
+          <form action="#" method="post" id="createListing">
             <div class="card mb-3 border-0 shadow-sm">
               <div class="card-title text-center h2">Create a listing</div>
+
               <div class="card-header hstack border-0 gap-2 bg-white">
                 <img
-                  id="author-image"
+                  id="seller-image"
                   src="#"
                   alt="User image"
                   class="rounded-circle img-fluid me-1"
                   width="50"
                 />
-                <h5 id="author-name" class="mb-1 h6"></h5>
+                <h5 id="seller-name" class="mb-1 h6"></h5>
               </div>
               <div class="card-body d-flex flex-column">
                 <div class="mb-3">
@@ -222,7 +255,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      id="postTitle"
+                      id="listingTitle"
                       placeholder="Title"
                       aria-label="Title"
                       required
@@ -234,21 +267,20 @@
 
                   <div class="mb-3">
                     <input
-                      type="text"
+                      type="date"
                       class="form-control"
-                      id="postSubTitle"
+                      id="endsAt"
                       placeholder="Deadline"
-                      aria-label="SubTitle"
+                      aria-label="endsAt"
                       required
-                      minlength="1"
-                      maxlength="45"
-                      name="SubTitle"
+                      min="2024-05-06"
+                      name="endsAt"
                     />
                   </div>
 
                   <textarea
                     class="form-control"
-                    id="postText"
+                    id="listingText"
                     rows="3"
                     placeholder="Describe the item"
                     aria-label="Body"
@@ -265,7 +297,7 @@
                   </div>
                   <input
                     type="url"
-                    id="postImageUrl"
+                    id="listingImageUrl1"
                     class="form-control"
                     placeholder="Paste the picture url"
                     aria-label="Image url"
@@ -276,10 +308,9 @@
                   <div class="input-group-text">
                     <i class="bi bi-images"></i>
                   </div>
-                  <!-- //FIXME: refactor renaming ID code -->
                   <input
                     type="url"
-                    id=""
+                    id="listingImageUrl2"
                     class="form-control"
                     placeholder="Paste the picture url"
                     aria-label="Image url"
@@ -290,10 +321,9 @@
                   <div class="input-group-text">
                     <i class="bi bi-images"></i>
                   </div>
-                  <!-- //FIXME: refactor renaming ID code -->
                   <input
                     type="url"
-                    id=""
+                    id="listingImageUrl3"
                     class="form-control"
                     placeholder="Paste the picture url"
                     aria-label="Image url"
@@ -301,13 +331,13 @@
                 </div>
 
                 <div
-                  id="errorCreatePost"
+                  id="errorcreateListing"
                   class="error invalid-feedback d-none"
                 ></div>
                 <div id="statusMsg" class="valid-feedback"></div>
 
                 <div
-                  id="spinnerCreatePost"
+                  id="spinnercreateListing"
                   class="align-self-center gap-3 m-3 d-none"
                 >
                   <div
@@ -336,6 +366,7 @@
         </aside>
       </main>
     </div>
+
     <footer class="text-white text-center bg-secondary vstack py-3">
       <span> Copyright© 2024 Auction House.</span>
       <span>All Rights Reserved</span>
