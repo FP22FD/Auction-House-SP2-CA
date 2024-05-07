@@ -1,7 +1,7 @@
 import { init as initAuthentication } from "../auth/authentication.mjs";
 import { init as initProfile } from "../profile/profile.mjs";
-import { init as initDisplayPosts } from "../feed/feedPosts.mjs";
-import { init as initCreatePost } from "../feed/createPost.mjs";
+import { init as initDisplayListings } from "../feed/feedPosts.mjs";
+import { init as initCreateListing } from "../feed/createPost.mjs";
 import { init as initSearch } from "../feed/search.mjs";
 import { init as initLogout } from "../shared/logout.mjs";
 
@@ -23,8 +23,8 @@ function router() {
 
     case "/feed/":
     case "/feed/index.html":
-      initDisplayPosts();
-      initCreatePost();
+      initDisplayListings();
+      initCreateListing();
       initSearch();
 
       initLogout();
