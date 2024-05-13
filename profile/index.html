@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Auction House app. Look at your profile and see your posts."
+      content="Auction House app. Look at your profile and see your listings, bids and Wins."
     />
     <title>Auction House | Profile page</title>
     <link type="image/x-icon" rel="stylesheet" href="/favicon.ico" />
@@ -22,7 +22,6 @@
               <img src="/logo.svg" alt="logo" height="50" />
             </a>
           </div>
-
           <div
             class="collapse navbar-collapse justify-content-end"
             id="navMenuHamburger"
@@ -41,7 +40,6 @@
               </button>
             </div>
           </div>
-
           <button
             class="navbar-toggler"
             type="button"
@@ -57,121 +55,19 @@
       </nav>
     </header>
 
-    <div class="container bg-white">
-      <div class="row py-4">
-        <div class="d-flex flex-column flex-md-row align-items-center">
+    <div class="container bg-white align-items-center">
+      <div class="row gap-2 justify-content-around">
+        <div id="profileData" class="col-xl-2 h-25 mt-3 p-xl-0">
           <div
-            id="errorProfileData"
-            class="error invalid-feedback text-center my-5 py-5 d-none"
-          ></div>
-
-          <div
-            id="spinnerProfileData"
-            class="gap-1 text-center my-5 py-5 d-none"
+            class="card d-flex flex-column align-items-center gap-3 p-3 border-0 shadow-sm"
           >
             <div
-              class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
-              role="status"
+              id="errorProfileData"
+              class="error invalid-feedback text-center my-5 py-5 d-none"
             ></div>
             <div
-              class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
-              role="status"
-            ></div>
-            <div
-              class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
-              role="status"
-            ></div>
-          </div>
-
-          <div>
-            <div class="position-relative">
-              <span class="position-absolute z-1 position-be-45"
-                ><i class="bi bi-patch-plus-fill h4 text-primary"></i>
-              </span>
-
-              <img
-                id="author-image"
-                src="#"
-                class="img-fluid rounded-circle d-block me-1 position-relative"
-                alt="User image"
-                width="200"
-              />
-            </div>
-          </div>
-
-          <div class="text-center text-md-start mx-md-3">
-            <div id="author-info" class="mb-2">
-              <h2 class="h3"></h2>
-              <p class="mb-0"></p>
-            </div>
-            <div
-              class="border rounded fw-bold d-flex p-2 justify-content-center"
-            >
-              <p class="px-2 mb-0">
-                <span><i class="bi bi-gem"></i></span>
-                Total Credit
-                <span>1000</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <main class="row my-4">
-        <nav>
-          <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-            <button
-              class="nav-link active"
-              id="nav-bids-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-bids"
-              type="button"
-              role="tab"
-              aria-controls="nav-bids"
-              aria-selected="true"
-            >
-              Your bids
-            </button>
-            <button
-              class="nav-link"
-              id="nav-listings-tab"
-              data-bs-toggle="tab"
-              data-bs-target="#nav-listings"
-              type="button"
-              role="tab"
-              aria-controls="nav-listings"
-              aria-selected="false"
-            >
-              Your listings
-            </button>
-          </div>
-        </nav>
-
-        <div class="tab-content" id="nav-tabContent">
-          <div
-            class="tab-pane fade min-vh-100 show active"
-            id="nav-bids"
-            role="tabpanel"
-            aria-labelledby="nav-bids-tab"
-          >
-            <div class="d-flex justify-content-end mb-3">
-              <div id="filter" class="dropdown">
-                <select
-                  id="order-By"
-                  class="form-select"
-                  aria-label="sort posts"
-                >
-                  <option value="title" selected>Title</option>
-                  <option value="newest">Newest</option>
-                  <option value="oldest">Oldest</option>
-                </select>
-              </div>
-            </div>
-
-            <div
-              id="spinnerPosts"
-              class="gap-1 text-center my-5 py-5 justify-content-center d-none"
-              data-id=""
+              id="spinnerProfileData"
+              class="gap-1 text-center my-5 py-5 d-none"
             >
               <div
                 class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
@@ -187,211 +83,428 @@
               ></div>
             </div>
 
-            <div
-              id="errorPosts"
-              class="error invalid-feedback text-center my-5 py-5 d-none"
-            ></div>
-
-            <div class="container">
-              <div id="posts" class="row"></div>
-              <template id="post">
-                <div class="col-12 col-md-6">
-                  <article class="card w-100 mb-3 border-0 shadow-sm">
-                    <div class="text-center text-primary">
-                      2d 23h Left - Thursday, 01:43 PM
-                    </div>
-
-                    <div class="card-header border-0 vstack gap-2 bg-white">
-                      <div class="hstack gap-2">
-                        <img
-                          id="authorImg"
-                          src="#"
-                          alt="User image"
-                          class="rounded-circle mw-100 object-fit-cover me-1"
-                          width="50"
-                          height="50"
-                        />
-                        <div class="flex-fill">
-                          <h5 class="mb-1"></h5>
-                          <p id="datePost" class="card-text">
-                            <small class="text-body-secondary"></small>
-                          </p>
-                        </div>
-
-                        <div>
-                          <button
-                            id="buttonClose"
-                            type="button"
-                            class="btn-close d-none"
-                            aria-label="Close"
-                          ></button>
-
-                          <button
-                            id="edit"
-                            type="button"
-                            role="button"
-                            class="btn btn-outline-primary shadow-sm"
-                          >
-                            <span><i class="bi bi-pencil-square"></i></span>
-                            Edit
-                          </button>
-                        </div>
-                      </div>
-
-                      <div id="containerPost">
-                        <p id="bodyTitle"></p>
-                        <div>
-                          <p id="bodyPost" class="card-text">
-                            <span id="viewPost"></span>
-                          </p>
-                          <a>
-                            <img
-                              id="postImg"
-                              src="#"
-                              class="card-img-top rounded-bottom-1 max-vh-50 object-fit-cover"
-                              alt="Post image"
-                            />
-                            <span id="alt-img"></span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      id="reactToPost"
-                      class="card-body d-flex justify-content-between"
-                    ></div>
-
-                    <!-- edit mode -->
-                    <form
-                      id="form-edit"
-                      class="card-body d-flex flex-column d-none"
-                    >
-                      <div class="mb-3">
-                        <div class="mb-3">
-                          <input
-                            type="text"
-                            class="form-control"
-                            id="postTitle"
-                            placeholder="Title"
-                            aria-label="Title"
-                            required
-                            minlength="1"
-                            maxlength="45"
-                            name="postTitle"
-                          />
-                        </div>
-                        <textarea
-                          class="form-control"
-                          id="postText"
-                          rows="3"
-                          placeholder="Say something..."
-                          aria-label="Body"
-                          minlength="5"
-                          maxlength="280"
-                          name="postText"
-                        ></textarea>
-                      </div>
-                      <div class="input-group mb-3">
-                        <div class="input-group-text">
-                          <i class="bi bi-images"></i>
-                        </div>
-                        <input
-                          type="url"
-                          id="postImageUrl"
-                          class="form-control"
-                          placeholder="Paste the picture url"
-                          aria-label="Image url"
-                        />
-                      </div>
-
-                      <button
-                        id="buttonSave"
-                        type="submit"
-                        class="btn btn-outline-success ms-3 gap-2 align-self-center d-none"
-                      >
-                        <span><i class="bi bi-floppy"></i></span>
-                        Save
-                      </button>
-                    </form>
-
-                    <!-- edit box -->
-                    <div
-                      id="edit-post"
-                      class="card-body d-flex justify-content-end border-top border-1 d-none"
-                    >
-                      <div>
-                        <button
-                          id="buttonUpdate"
-                          type="button"
-                          class="btn btn-outline-secondary ms-3"
-                        >
-                          <span><i class="bi bi-pencil-square"></i></span>
-                          Update
-                        </button>
-                      </div>
-                      <div>
-                        <button
-                          id="buttonDelete"
-                          type="button"
-                          class="btn btn-outline-danger ms-3"
-                        >
-                          <span><i class="bi bi-trash"></i></span>
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-
-                    <!--  confirm msg -->
-                    <div
-                      id="confirmAction"
-                      class="alert alert-light d-flex justify-content-center text-center m-3 d-none p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
-                      role="alert"
-                    >
-                      <div>Are you sure about this?</div>
-                      <button
-                        id="buttonMsgNo"
-                        type="button"
-                        class="btn btn-outline-secondary ms-3"
-                        data-bs-toggle="button"
-                      >
-                        No
-                      </button>
-                      <button
-                        id="buttonMsgYes"
-                        type="button"
-                        class="btn btn-outline-secondary ms-3"
-                      >
-                        Yes, delete it
-                      </button>
-                    </div>
-
-                    <!--  error msg -->
-                    <div id="errorMsg" class="alert alert-danger d-none">
-                      Something went wrong, try again!
-                    </div>
-                  </article>
-                </div>
-              </template>
+            <div class="position-relative">
+              <!-- <span class="position-absolute z-1 position-be-45"><i class="bi bi-patch-plus-fill h4 text-primary"></i>
+            </span> -->
+              <img
+                id="author-image"
+                src="#"
+                class="img-fluid rounded-circle mw-100 me-1"
+                alt="User image"
+                width="200"
+                height="200"
+              />
             </div>
-          </div>
 
-          <div
-            class="tab-pane fade min-vh-100"
-            id="nav-listings"
-            role="tabpanel"
-            aria-labelledby="nav-Listings-tab"
-          >
-            <div id="statusMsg" class="hstack gap-3">
-              <div
-                class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
+            <div id="author-info" class="card-body">
+              <div class="text-center mb-3">
+                <div class="text-start mb-4">
+                  <h2 class="card-title h5">Your name</h2>
+                  <p class="card-text small">Your bio</p>
+                </div>
+
+                <div class="card-text mb-4">
+                  <small
+                    class="text-body-secondary hstack gap-1 align-self-center row"
+                  >
+                    <div
+                      class="d-flex flex-column align-items-center col shadow-sm"
+                    >
+                      <span id="totWins">0</span>
+                      <span class="fw-bold">Wins</span>
+                    </div>
+                    <div
+                      class="d-flex flex-column align-items-center col shadow-sm"
+                    >
+                      <span id="totListings">0</span>
+                      <span class="fw-bold">Listings</span>
+                    </div>
+                    <div
+                      class="d-flex flex-column align-items-center col shadow-sm"
+                    >
+                      <span id="totCredits">0</span>
+                      <div class="hstack gap-2 align-self-center">
+                        <span><i class="bi bi-gem"></i></span>
+                        <span class="fw-bold">Credits</span>
+                      </div>
+                    </div>
+                  </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <button
+                id="show-dialog"
+                type="button"
+                role="button"
+                class="btn btn-outline-primary fw-bold"
               >
-                You don't have any listings yet!
+                Edit profile
+              </button>
+            </div>
+
+            <dialog id="dialog" class="border-0">
+              <div
+                id="modal-main"
+                class="relative flex flex-col overflow-auto vstack align-items-center"
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center w-100 sticky p-3"
+                >
+                  <h2 class="font-bold m-0">Edit avatar</h2>
+                  <button
+                    id="close"
+                    type="button"
+                    class="btn-close text-secondary shadow-none"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div id="modal-content" class="p-3">
+                  <form
+                    id="editAvatar"
+                    action="#"
+                    method="post"
+                    class="d-flex flex-column gap-4 align-items-center"
+                  >
+                    <img
+                      id="authorAvatar"
+                      src="#"
+                      class="img-fluid rounded-circle mw-100 me-1"
+                      alt="User image"
+                      width="200"
+                      height="200"
+                    />
+
+                    <div class="form-floating m-3">
+                      <input
+                        type="url"
+                        class="form-control rounded-full small"
+                        id="avatarUrl"
+                        placeholder="Your image url..."
+                      />
+                      <label
+                        for="floatingInput"
+                        name="avatar"
+                        class="text-body-secondary"
+                        >Paste the picture url</label
+                      >
+                    </div>
+
+                    <div>
+                      <button
+                        id="btnUpload"
+                        class="btn btn-primary border shadow-md"
+                        type="submit"
+                      >
+                        Upload
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+          </div>
+        </div>
+
+        <main class="col-xl-9 my-3">
+          <nav>
+            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
+              <button
+                class="nav-link active"
+                id="nav-listings-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-listings"
+                type="button"
+                role="tab"
+                aria-controls="nav-listings"
+                aria-selected="true"
+              >
+                Your listings
+              </button>
+
+              <button
+                class="nav-link"
+                id="nav-bids-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-bids"
+                type="button"
+                role="tab"
+                aria-controls="nav-bids"
+                aria-selected="false"
+              >
+                Your bids
+              </button>
+            </div>
+          </nav>
+
+          <div class="tab-content" id="nav-tabContent">
+            <div
+              class="tab-pane fade min-vh-100 show active"
+              id="nav-listings"
+              role="tabpanel"
+              aria-labelledby="nav-listings-tab"
+            >
+              <div class="d-flex justify-content-end mb-3">
+                <div id="filter" class="dropdown">
+                  <select
+                    id="order-By"
+                    class="form-select"
+                    aria-label="sort posts"
+                  >
+                    <option value="title" selected>Title</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                  </select>
+                </div>
+              </div>
+
+              <div
+                id="errorListings"
+                class="error invalid-feedback text-center my-5 py-5 d-none"
+              ></div>
+
+              <div
+                id="spinnerListings"
+                class="gap-1 text-center my-5 py-5 justify-content-center d-none"
+                data-id=""
+              >
+                <div
+                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
+                  role="status"
+                ></div>
+                <div
+                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+                  role="status"
+                ></div>
+                <div
+                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+                  role="status"
+                ></div>
+              </div>
+
+              <div class="container">
+                <div
+                  id="listings"
+                  class="row row-cols-1 row-cols-md-3 g-4"
+                ></div>
+
+                <template id="listing">
+                  <div class="col">
+                    <article class="card w-100 h-100 mb-3 border-0 shadow-sm">
+                      <div
+                        id="deadlineListings"
+                        class="text-center text-primary small mt-3"
+                      >
+                        2d 23h Left - Thursday, 01:43 PM
+                      </div>
+
+                      <div class="card-header border-0 vstack gap-2 bg-white">
+                        <div class="hstack gap-2">
+                          <img
+                            id="sellerImg"
+                            src="#"
+                            alt="User image"
+                            class="rounded-circle mw-100 object-fit-cover me-1"
+                            width="50"
+                            height="50"
+                          />
+
+                          <div class="flex-fill">
+                            <h5 class="mb-1 small"></h5>
+                            <p id="dateListing" class="card-text small">
+                              <small class="text-body-secondary"></small>
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="h-100 vstack justify-content-between">
+                          <div>
+                            <p id="bodyTitle" class="fw-bold"></p>
+                            <p id="bodyListing" class="card-text"></p>
+                          </div>
+
+                          <div id="listingImgs">
+                            <!-- carousel -->
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="card-body d-flex flex-column d-none">
+                        <div class="mb-3">
+                          <div class="mb-3">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="listingTitle"
+                              placeholder="Title"
+                              aria-label="Title"
+                              required
+                              minlength="1"
+                              maxlength="45"
+                              name="listingTitle"
+                            />
+                          </div>
+                          <textarea
+                            class="form-control"
+                            id="listingText"
+                            rows="3"
+                            placeholder="Say something..."
+                            aria-label="Body"
+                            minlength="5"
+                            maxlength="280"
+                            name="listingText"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+                </template>
+
+                <template id="slider-carousel">
+                  <div id="carousel" class="carousel slide">
+                    <div class="carousel-inner">
+                      <!-- images from js -->
+                    </div>
+
+                    <button
+                      class="carousel-control-prev"
+                      type="button"
+                      data-bs-target="#carousel"
+                      data-bs-slide="prev"
+                    >
+                      <span
+                        class="carousel-control-prev-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <button
+                      class="carousel-control-next"
+                      type="button"
+                      data-bs-target="#carousel"
+                      data-bs-slide="next"
+                    >
+                      <span
+                        class="carousel-control-next-icon"
+                        aria-hidden="true"
+                      ></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                </template>
+              </div>
+            </div>
+
+            <div
+              class="tab-pane fade min-vh-100"
+              id="nav-bids"
+              role="tabpanel"
+              aria-labelledby="nav-bids-tab"
+            >
+              <div class="d-flex justify-content-end mb-3">
+                <div id="filterBids" class="dropdown">
+                  <select
+                    id="order-By-Bids"
+                    class="form-select"
+                    aria-label="sort posts"
+                  >
+                    <option value="title" selected>Title</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                  </select>
+                </div>
+              </div>
+
+              <div
+                id="errorBids"
+                class="error invalid-feedback text-center my-5 py-5 d-none"
+              ></div>
+
+              <div
+                id="spinnerBids"
+                class="gap-1 text-center my-5 py-5 justify-content-center d-none"
+                data-id=""
+              >
+                <div
+                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
+                  role="status"
+                ></div>
+                <div
+                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+                  role="status"
+                ></div>
+                <div
+                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+                  role="status"
+                ></div>
+              </div>
+
+              <div class="container">
+                <div id="bids" class="row row-cols-1 row-cols-md-3 g-4"></div>
+
+                <template id="bid">
+                  <div class="col">
+                    <article class="card w-100 h-100 mb-3 border-0 shadow-sm">
+                      <div
+                        id="deadlineBids"
+                        class="text-center text-primary small mt-3"
+                      >
+                        2d 23h Left - Thursday, 01:43 PM
+                      </div>
+                      <div class="card-header border-0 vstack gap-2 bg-white">
+                        <div class="align-self-center">
+                          <span id="bodyBidTitle" class="fw-bold"></span>
+                        </div>
+
+                        <div
+                          class="d-flex flex-column border-bottom mt-3 text-secondary"
+                        >
+                          <div class="hstack justify-content-between">
+                            Amount:<span id="amount"></span>
+                          </div>
+                          <div class="hstack justify-content-between mb-3">
+                            EndsAt:<span id="endsAt"></span>
+                          </div>
+                        </div>
+
+                        <div id="containerBid" class="h-100 vstack w-100">
+                          <p class="d-inline-flex gap-1 align-self-center">
+                            <button
+                              class="btn btn-outline-secondary"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#collapseExample"
+                              aria-expanded="false"
+                              aria-controls="collapseExample"
+                            >
+                              View listing's description
+                            </button>
+                          </p>
+
+                          <div class="collapse" id="collapseExample">
+                            <div
+                              id="bodyBid"
+                              class="card card-body border-0 p-0 mt-3"
+                            >
+                              Some placeholder content for the collapse
+                              component. This panel is hidden by default but
+                              revealed when the user activates the relevant
+                              trigger.
+                            </div>
+                          </div>
+                          <div id="bidImgs"></div>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+                </template>
               </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
 
     <footer class="bg-secondary text-white text-center vstack py-3">
