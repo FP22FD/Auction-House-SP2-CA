@@ -1,4 +1,4 @@
-import { updateListings } from "./feedPosts.mjs";
+import { updateListings } from "./index.mjs";
 import { API_BASE, API_KEY, API_SEARCH } from "../settings.mjs";
 import { load } from "../shared/storage.mjs";
 import { ErrorHandler } from "../shared/errorHandler.mjs";
