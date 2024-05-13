@@ -587,7 +587,7 @@ export async function displayBids(username) {
     displaySpinner(true, "#spinnerBids");
     displayError(false, "#errorBids");
 
-    const url = API_BASE + API_BIDS_PROFILE(username);
+    const url = API_BASE + API_DATA_PROFILE(username) + API_BIDS_PROFILE;
 
     const response = await fetch(url, {
       headers: {

@@ -1,5 +1,5 @@
 import { updateListings } from "./index.mjs";
-import { API_BASE, API_KEY, API_SEARCH } from "../settings.mjs";
+import { API_BASE, API_KEY, API_LISTINGS, API_SEARCH } from "../settings.mjs";
 import { load } from "../shared/storage.mjs";
 import { ErrorHandler } from "../shared/errorHandler.mjs";
 import { displayError } from "../shared/displayErrorMsg.mjs";
@@ -94,7 +94,7 @@ async function searchPosts(text) {
     displaySpinner(true, "#spinnerListings");
     displayError(false, "#errorSearch");
 
-    const url = API_BASE + API_SEARCH + encodeURIComponent(text); // text
+    const url = API_BASE + API_LISTINGS + API_SEARCH + encodeURIComponent(text); // text
 
     const response = await fetch(url, {
       headers: {
