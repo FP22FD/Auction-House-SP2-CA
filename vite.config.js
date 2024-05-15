@@ -8,6 +8,7 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html'),
+                auth: resolve(__dirname, 'auth/index.html'),
                 listing: resolve(__dirname, 'feed/index.html'),
                 profile: resolve(__dirname, 'profile/index.html')
             },
