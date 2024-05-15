@@ -1,3 +1,5 @@
+/// <reference types="Cypress"/>
+
 //check authorization
 //redirect authorized user to profile page
 //print error if user is not authorized
@@ -6,7 +8,10 @@
 describe("Check login", () => {
     it("Checks user Authorized", () => {
         // Arrange
-        cy.visit("http://localhost:8080/")
+        cy.visit("https://github.com/FP22FD/Auction-House-SP2-CA/")
+        // cy.visit("http://127.0.0.1:8080/")
+        cy.get('#btnLogin').click();
+
         cy.get(('#loginEmail')).type("userfernanda@noroff.no", { delay: 20 });
         cy.get('#loginPassword').type("UserProfile874", { delay: 20 });
         cy.intercept('/profile/index.html').as('profile-page')
@@ -16,11 +21,14 @@ describe("Check login", () => {
 
         // Assert
         cy.wait("@profile-page")
-    })
+    });
 
     it("Checks user not Authorized", () => {
         // Arrange
-        cy.visit("http://localhost:8080/")
+        cy.visit("https://github.com/FP22FD/Auction-House-SP2-CA/")
+        // cy.visit("http://127.0.0.1:8080/")
+        cy.get('#btnLogin').click();
+
         cy.get(('#loginEmail')).type("userfederica@noroff.no", { delay: 20 });
         cy.get('#loginPassword').type("wrong-password", { delay: 20 });
         cy.intercept("POST", "https://v2.api.noroff.dev/auth/login").as("POST-login");
