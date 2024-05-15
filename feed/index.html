@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Auction House. Here you can find deals, sell your stuff, buy art, jewelry and much more."
+    />
+    <title>Auction House | Listings page</title>
+    <link type="image/x-icon" rel="stylesheet" href="/favicon.ico" />
+
+    <script type="module" src="../src/js/router/router.mjs"></script>
+  </head>
+
+  <body>
+    <header class="border-bottom border-1 bg-primary">
+      <nav class="navbar navbar-expand-lg sticky-top mx-3">
+        <div class="container-fluid d-flex">
+          <div>
+            <a class="navbar-brand object-fit-cover" href="/feed/index.html">
+              <img src="/logo.svg" alt="logo" height="50" />
+            </a>
+          </div>
+
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navMenuHamburger"
+          >
+            <div class="navbar-nav">
+              <a
+                class="nav-link"
+                id="profile"
+                aria-current="page"
+                href="/profile/index.html"
+                >Profile</a
+              >
+              <a class="nav-link active" href="/feed/index.html">Listings</a>
+              <a class="nav-link" href="/start.html">Home</a>
+
+              <button
+                type="button"
+                id="logout"
+                class="btn nav-link text-start shadow-none"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenuHamburger"
+            aria-controls="navMenuHamburger"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container bg-white">
+      <main class="row my-5">
+        <div
+          class="d-flex flex-column text-center mb-5 col-lg-10 offset-lg-1"
+          role="search"
+        >
+          <form action="/feed" method="get">
+            <div class="input-group mb-3">
+              <input
+                id="search"
+                type="search"
+                class="form-control"
+                placeholder="What are you looking for?"
+                aria-label="Search"
+                required
+                minlength="1"
+                maxlength="45"
+                name="search"
+              />
+              <button
+                id="btn"
+                class="btn btn-light border"
+                type="submit"
+                aria-label="Search"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
+          </form>
+          <div id="errorSearch" class="error invalid-feedback d-none"></div>
+        </div>
+
+        <div class="col-lg-6 order-2 order-lg-1 min-vh-100">
+          <div class="d-flex justify-content-between mb-3">
+            <ul class="nav my-1">
+              <li class="nav-item">
+                <h1 class="fs-6 border-bottom border-primary border-5 px-1">
+                  Listings
+                </h1>
+              </li>
+            </ul>
+            <div class="d-flex flex-column text-center" role="search">
+              <div class="input-group input-group-sm">
+                <input
+                  id="filter"
+                  type="search"
+                  class="form-control"
+                  placeholder="Filter"
+                  aria-label="filter"
+                  name="search"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            id="spinnerListings"
+            class="gap-1 text-center my-5 py-5 justify-content-center d-none"
+          >
+            <div
+              class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
+              role="status"
+            ></div>
+            <div
+              class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+              role="status"
+            ></div>
+            <div
+              class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+              role="status"
+            ></div>
+          </div>
+
+          <div
+            id="errorListings"
+            class="error invalid-feedback text-center my-5 py-5 d-none"
+          ></div>
+
+          <div class="justify-content-center">
+            <div id="listings"></div>
+            <template id="listing">
+              <article class="card mb-3 border-0 shadow-sm" data-id="">
+                <p
+                  id="deadline"
+                  class="text-secondary fw-bold small align-self-end m-3 border shadow py-2 px-4 shadow-sm rounded-4"
+                ></p>
+                <div class="card-header border-0 vstack gap-4 bg-white">
+                  <div class="hstack gap-2">
+                    <img
+                      id="sellerImg"
+                      src="#"
+                      alt="User image"
+                      class="rounded-circle object-fit-cover me-1"
+                      width="50"
+                      height="50"
+                    />
+                    <div class="flex-fill">
+                      <h5 class="mb-1"></h5>
+                      <p id="dateListing" class="card-text">
+                        <small class="text-body-secondary"></small>
+                      </p>
+                    </div>
+                    <div>
+                      <button
+                        id="buttonClose"
+                        type="button"
+                        class="btn-close d-none"
+                        aria-label="Close"
+                      ></button>
+
+                      <button
+                        id="btnPlaceBid"
+                        type="button"
+                        role="button"
+                        class="btn btn-outline-primary shadow-sm d-none"
+                      >
+                        Place bid
+                      </button>
+
+                      <a
+                        id="linkPlaceBid"
+                        href="/start.html"
+                        role="button"
+                        class="btn btn-outline-primary shadow-sm d-none"
+                      >
+                        Place bid
+                      </a>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p id="bodyTitle" class="fw-bold"></p>
+
+                    <div class="order-3">
+                      <p id="bodyListing" class="card-text">
+                        <span id="viewListing"></span>
+                      </p>
+
+                      <div id="listingImgs">
+                        <!-- carousel -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    id="PlaceOnListing"
+                    class="card-body vstack border-top border-1 px-0 d-none"
+                  >
+                    <form
+                      action="#"
+                      method="post"
+                      id="createBid"
+                      class="hstack justify-content-between"
+                    >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="amountBid"
+                        placeholder="Your offer..."
+                        min="1"
+                        required
+                        aria-label="amountBid"
+                        name="amount"
+                      />
+
+                      <button
+                        type="submit"
+                        class="btn btn-outline-primary ms-3 px-4"
+                      >
+                        <span
+                          id="spinnerBid"
+                          class="spinner-grow spinner-grow-sm d-none"
+                          aria-hidden="true"
+                        ></span>
+                        Bid
+                      </button>
+                    </form>
+
+                    <div id="statusBidMsg" class="text-success d-none"></div>
+                    <div id="errorBidMsg" class="text-danger d-none"></div>
+                  </div>
+                </div>
+              </article>
+            </template>
+
+            <template id="slider-carousel">
+              <div id="carousel" class="carousel slide">
+                <div class="carousel-inner">
+                  <!-- images from js -->
+                </div>
+
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carousel"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carousel"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <aside class="col-lg-5 order-1 order-lg-2 offset-lg-1 mb-5">
+          <form action="#" method="post" id="createListing">
+            <div class="card mb-3 border-0 shadow-sm">
+              <div class="card-title text-center h2">Create a listing</div>
+
+              <div class="card-header hstack border-0 gap-2 bg-white">
+                <img
+                  id="seller-image"
+                  src="#"
+                  alt="User image"
+                  class="rounded-circle me-1 object-fit-cover"
+                  width="50"
+                  height="50"
+                />
+                <h5 id="seller-name" class="mb-1 h6"></h5>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <div class="mb-3">
+                  <div class="mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="listingTitle"
+                      placeholder="Title"
+                      aria-label="Title"
+                      required
+                      minlength="1"
+                      maxlength="45"
+                      name="title"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="endsAt"
+                      placeholder="Deadline"
+                      aria-label="endsAt"
+                      required
+                      min="2024-05-06"
+                      name="endsAt"
+                    />
+                  </div>
+
+                  <textarea
+                    class="form-control"
+                    id="listingText"
+                    rows="3"
+                    placeholder="Describe the item"
+                    aria-label="Body"
+                    minlength="5"
+                    maxlength="280"
+                    name="textarea"
+                  ></textarea>
+                  <span id="char" class="form-text"></span>
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-text">
+                    <i class="bi bi-images"></i>
+                  </div>
+                  <input
+                    type="url"
+                    id="listingImageUrl1"
+                    class="form-control"
+                    placeholder="Paste the picture url"
+                    aria-label="Image url"
+                  />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-text">
+                    <i class="bi bi-images"></i>
+                  </div>
+                  <input
+                    type="url"
+                    id="listingImageUrl2"
+                    class="form-control"
+                    placeholder="Paste the picture url"
+                    aria-label="Image url"
+                  />
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-text">
+                    <i class="bi bi-images"></i>
+                  </div>
+                  <input
+                    type="url"
+                    id="listingImageUrl3"
+                    class="form-control"
+                    placeholder="Paste the picture url"
+                    aria-label="Image url"
+                  />
+                </div>
+
+                <div
+                  id="errorcreateListing"
+                  class="error invalid-feedback d-none"
+                ></div>
+                <div id="statusMsg" class="valid-feedback"></div>
+
+                <div
+                  id="spinnercreateListing"
+                  class="align-self-center gap-3 m-3 d-none"
+                >
+                  <div
+                    class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
+                    role="status"
+                  ></div>
+                  <div
+                    class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+                    role="status"
+                  ></div>
+                  <div
+                    class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
+                    role="status"
+                  ></div>
+                </div>
+              </div>
+
+              <div
+                class="card-footer border-0 hstack gap-3 justify-content-end bg-white"
+              >
+                <button type="reset" class="btn btn-light">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+              </div>
+            </div>
+          </form>
+        </aside>
+      </main>
+    </div>
+
+    <footer class="text-white text-center bg-secondary vstack py-3">
+      <span> Copyright© 2024 Auction House.</span>
+      <span>All Rights Reserved</span>
+    </footer>
+  </body>
+</html>
