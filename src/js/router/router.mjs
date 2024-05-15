@@ -1,16 +1,26 @@
+// import { init as initStart } from "../index/index.mjs";
 import { init as initAuthentication } from "../auth/authentication.mjs";
 import { init as initProfile } from "../profile/index.mjs";
 import { init as initDisplayListings } from "../feed/index.mjs";
 import { init as initCreateListing } from "../feed/createListing.mjs";
 import { init as initSearch } from "../feed/search.mjs";
+import { init as initNotAuthorized } from "../feed/notAuthorized.mjs";
 import { init as initLogout } from "../shared/logout.mjs";
+import { load } from "../shared/storage.mjs";
 
 function router() {
   const pathname = window.location.pathname;
 
+  const token = load("token");
+  const isAuth = !!token;
+
   switch (pathname) {
     case "/":
     case "/index.html":
+      // initStart();
+      break;
+
+    case "/auth/index.html":
       initAuthentication();
       break;
 
@@ -23,11 +33,18 @@ function router() {
 
     case "/feed/":
     case "/feed/index.html":
-      initDisplayListings();
-      initCreateListing();
-      initSearch();
+      if (isAuth) {
+        initDisplayListings();
+        initCreateListing();
+        initSearch();
 
-      initLogout();
+        initLogout();
+      } else {
+        initDisplayListings();
+        initSearch();
+
+        initNotAuthorized();
+      }
       break;
 
     default:
