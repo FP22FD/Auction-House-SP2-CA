@@ -31,6 +31,7 @@
                 >Profile</a
               >
               <a class="nav-link" href="/feed/index.html">Feed</a>
+              <a class="nav-link" href="/start.html">Home</a>
               <button
                 type="button"
                 id="logout"
@@ -55,11 +56,11 @@
       </nav>
     </header>
 
-    <div class="container bg-white align-items-center">
+    <div class="container bg-white align-items-center my-5">
       <div class="row gap-2 justify-content-around">
         <div id="profileData" class="col-xl-2 h-25 mt-3 p-xl-0">
           <div
-            class="card d-flex flex-column align-items-center gap-3 p-3 border-0 shadow-sm"
+            class="card d-flex flex-column flex-fill align-items-center gap-3 p-3 border-0 shadow-sm"
           >
             <div
               id="errorProfileData"
@@ -89,10 +90,10 @@
               <img
                 id="author-image"
                 src="#"
-                class="img-fluid rounded-circle mw-100 me-1"
+                class="rounded-circle object-fit-cover"
                 alt="User image"
-                width="200"
-                height="200"
+                width="180"
+                height="180"
               />
             </div>
 
@@ -170,10 +171,10 @@
                     <img
                       id="authorAvatar"
                       src="#"
-                      class="img-fluid rounded-circle mw-100 me-1"
+                      class="rounded-circle object-fit-cover"
+                      width="250"
+                      height="250"
                       alt="User image"
-                      width="200"
-                      height="200"
                     />
 
                     <div class="form-floating m-3">
@@ -184,7 +185,7 @@
                         placeholder="Your image url..."
                       />
                       <label
-                        for="floatingInput"
+                        for="avatarUrl"
                         name="avatar"
                         class="text-body-secondary"
                         >Paste the picture url</label
@@ -248,9 +249,10 @@
               <div class="d-flex justify-content-end mb-3">
                 <div id="filter" class="dropdown">
                   <select
-                    id="order-By"
+                    id="order-By-Listings"
                     class="form-select"
                     aria-label="sort posts"
+                    data-id="order-ByListings"
                   >
                     <option value="title" selected>Title</option>
                     <option value="newest">Newest</option>
@@ -299,13 +301,13 @@
                         2d 23h Left - Thursday, 01:43 PM
                       </div>
 
-                      <div class="card-header border-0 vstack gap-2 bg-white">
+                      <div class="card-header border-0 vstack gap-4 bg-white">
                         <div class="hstack gap-2">
                           <img
                             id="sellerImg"
                             src="#"
                             alt="User image"
-                            class="rounded-circle mw-100 object-fit-cover me-1"
+                            class="rounded-circle object-fit-cover me-1"
                             width="50"
                             height="50"
                           />
@@ -329,7 +331,7 @@
                           </div>
                         </div>
                       </div>
-
+                      <!-- //FIXME: controlla questa parte di codice! -->
                       <div class="card-body d-flex flex-column d-none">
                         <div class="mb-3">
                           <div class="mb-3">
@@ -409,10 +411,11 @@
                     id="order-By-Bids"
                     class="form-select"
                     aria-label="sort posts"
+                    data-id="orderByBids"
                   >
                     <option value="title" selected>Title</option>
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
+                    <option value="newest">Newest placed</option>
+                    <option value="oldest">Oldest placed</option>
                   </select>
                 </div>
               </div>
@@ -464,26 +467,30 @@
                           <div class="hstack justify-content-between">
                             Amount:<span id="amount"></span>
                           </div>
+                          <div class="hstack justify-content-between">
+                            Placed at:<span id="placedAt"></span>
+                          </div>
                           <div class="hstack justify-content-between mb-3">
-                            EndsAt:<span id="endsAt"></span>
+                            Ends at:<span id="endsAt"></span>
                           </div>
                         </div>
 
                         <div id="containerBid" class="h-100 vstack w-100">
                           <p class="d-inline-flex gap-1 align-self-center">
                             <button
+                              id="btnCollapseBid"
                               class="btn btn-outline-secondary"
                               type="button"
                               data-bs-toggle="collapse"
-                              data-bs-target="#collapseExample"
+                              data-bs-target="#collapseBid"
                               aria-expanded="false"
-                              aria-controls="collapseExample"
+                              aria-controls="collapseBid"
                             >
                               View listing's description
                             </button>
                           </p>
 
-                          <div class="collapse" id="collapseExample">
+                          <div class="collapse" id="collapseBid">
                             <div
                               id="bodyBid"
                               class="card card-body border-0 p-0 mt-3"
