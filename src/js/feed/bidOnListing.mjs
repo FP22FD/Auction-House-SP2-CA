@@ -30,13 +30,6 @@ import { ErrorHandler } from "../shared/errorHandler.mjs";
 
 // -------------------------------------------------
 
-export function init() {
-  // /** @type {HTMLFormElement} */
-  // const form = document.querySelector("#createBid");
-  // form.addEventListener("submit", handleBidSubmit);
-}
-
-//FIXME: duplicate code also in create listing
 /**
  * @description Shows or hides a info message.
  * @method statusMsg
@@ -60,7 +53,6 @@ export function statusMsg(listingId, visible, text) {
   }
 }
 
-//FIXME: duplicate code also in create listing
 /**
  * @description Shows or hides a info error message.
  * @method displayError
@@ -84,7 +76,6 @@ export function displayError(listingId, visible, text) {
   }
 }
 
-//FIXME: duplicate code also in create listing
 /**
  * @description Show and hide the spinner element
  * @method displaySpinner
