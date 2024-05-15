@@ -29,21 +29,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Install Dependencies
-        run: npm i 
+        run: npm i
+
       - name: Replace placeholders with our secret variables
         uses: falnyr/replace-env-vars-action@v1.3.2
         env:
           VITE_API_KEY: ${{secrets.VITE_API_KEY}}
         with:
           filename: src/js/settings.mjs
+
+      - name: Build
+        run: npm run build
+
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v4
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Upload dist folder
+          path: "./dist"
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
