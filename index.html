@@ -7,29 +7,29 @@
       name="description"
       content="Auction House app. Join the community by logging in or registering."
     />
-    <title>Auction House | Authentication page</title>
+    <title>Auction House | Home page</title>
     <link type="image/x-icon" rel="stylesheet" href="/favicon.ico" />
 
-    <script type="module" src="./src/js/router/router.mjs"></script>
+    <script type="module" src="./src/js/index/index.mjs"></script>
   </head>
 
   <body>
     <div class="container h-100">
       <div class="d-flex align-items-center justify-content-center vh-100">
         <div class="row w-100">
-          <div class="col-12 col-xl-6 d-none d-xl-block m-auto">
+          <div class="col-12 col-xl-6 m-auto d-none d-xl-block">
             <div
               class="card justify-content-center align-items-center border-0"
             >
               <div class="text-center p-4">
                 <p class="h6 fw-bold">Auction House for mobile devices</p>
                 <p class="small">
-                  Install our official mobile app and shop or sell anytime and
-                  anywhere.
+                  Soon, you'll be able to buy and sell anytime, anywhere with
+                  our official mobile app!
                 </p>
               </div>
               <img
-                src="/public/assets/mobile-img.png"
+                src="/assets/mobile-img.png"
                 alt="Mobile app image"
                 class="card-img-bottom max-vh-50 w-auto"
               />
@@ -54,195 +54,44 @@
               </header>
 
               <main class="bg-white vstack justify-content-center text-center">
-                <div class="p-3 p-md-5">
-                  <div>
-                    <h1 class="h4 fw-bold">Please login or register</h1>
-                  </div>
-
-                  <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                      <button
-                        class="nav-link text-black active"
-                        id="login-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#login-tab-pane"
-                        type="button"
-                        role="tab"
-                        aria-controls="login-tab-pane"
-                        aria-selected="true"
-                      >
-                        Login
-                      </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button
-                        class="nav-link text-black"
-                        id="register-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#register-tab-pane"
-                        type="button"
-                        role="tab"
-                        aria-controls="register-tab-pane"
-                        aria-selected="false"
-                      >
-                        Register
-                      </button>
-                    </li>
-                  </ul>
-
-                  <div
-                    class="tab-content border border-top-0"
-                    id="myTabContent"
-                  >
-                    <div
-                      class="tab-pane show active"
-                      id="login-tab-pane"
-                      role="tabpanel"
-                      aria-labelledby="login-tab"
-                      tabindex="0"
-                    >
-                      <form id="login-form" class="py-4 px-2">
-                        <div class="form-floating mb-3 has-validation">
-                          <input
-                            type="email"
-                            name="loginEmail"
-                            required
-                            minlength="8"
-                            pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-                            class="form-control"
-                            id="loginEmail"
-                            placeholder="name@example.com"
-                            title="A @stud.noroff.no email is required."
-                          />
-                          <label for="loginEmail">Email address</label>
-                        </div>
-
-                        <div class="input-group mb-4">
-                          <input
-                            id="loginPassword"
-                            type="password"
-                            required
-                            minlength="8"
-                            name="loginPassword"
-                            class="form-control loginPassword"
-                            placeholder="Password"
-                          />
-
-                          <div class="input-group-text rounded-end">
-                            <i
-                              id="hidePassword"
-                              class="bi bi-eye-slash d-flex"
-                            ></i>
-                            <i
-                              id="showPassword"
-                              class="bi bi-eye-fill d-none"
-                            ></i>
-                          </div>
-
-                          <label for="loginPassword" class="visually-hidden"
-                            >Password</label
-                          >
-                        </div>
-
-                        <div class="d-flex justify-content-center">
-                          <button
-                            type="submit"
-                            class="btn btn-outline-primary shadow-sm mt-3 align-middle d-flex gap-3 align-items-center fw-bold"
-                          >
-                            Login
-                            <span
-                              id="spinnerLogin"
-                              class="spinner-border spinner-border-sm text- d-none"
-                              role="status"
-                            >
-                              <span class="visually-hidden">Loading...</span>
-                            </span>
-                          </button>
-                        </div>
-                      </form>
+                <div class="vstack gap-5 p-5">
+                  <div class="mb-5">
+                    <div class="text-nowrap">
+                      <h1 class="h4 fw-bold">Welcome!</h1>
+                      <p class="mb-0">Bid your favorites items with us!</p>
+                      <p>No cost to shop or sell.</p>
                     </div>
 
-                    <div
-                      class="tab-pane"
-                      id="register-tab-pane"
-                      role="tabpanel"
-                      aria-labelledby="register-tab"
-                      tabindex="0"
-                    >
-                      <form id="register-form" class="py-4 px-2">
-                        <div class="form-floating mb-3">
-                          <input
-                            type="text"
-                            name="username"
-                            required
-                            minlength="5"
-                            maxlength="45"
-                            class="form-control"
-                            id="username"
-                            placeholder="Username"
-                          />
-                          <label for="username">Name</label>
-                        </div>
+                    <div class="d-flex justify-content-center">
+                      <!-- //TODO:cancel the tag a and change to button tag bellow in javascript! -->
+                      <a
+                        class="btn btn-outline-primary shadow-sm mt-3 align-middle d-flex gap-3 align-items-center fw-bold"
+                        href="/feed/index.html"
+                        role="button"
+                        >Let's start</a
+                      >
 
-                        <div class="form-floating mb-3">
-                          <input
-                            type="email"
-                            name="emailAddress"
-                            required
-                            minlength="8"
-                            pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-                            class="form-control"
-                            id="registerEmail"
-                            placeholder="name@example.com"
-                            title="Only @noroff.no or @stud.noroff.no email can register profile"
-                          />
-                          <label for="registerEmail">Email address</label>
-                        </div>
+                      <!-- <button type="submit" class="btn btn-outline-primary shadow-sm mt-3 align-middle d-flex gap-3 align-items-center fw-bold">
+                        Let's start
+                        <span id="spinnerLogin" class="spinner-border spinner-border-sm text- d-none" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                        </span>
+                      </button> -->
+                    </div>
+                  </div>
 
-                        <div class="form-floating mb-3">
-                          <input
-                            type="password"
-                            name="password"
-                            required
-                            minlength="8"
-                            class="form-control"
-                            id="registerPassword"
-                            placeholder="Password"
-                          />
-                          <label for="registerPassword">Password</label>
-                        </div>
-
-                        <div class="form-floating mb-4">
-                          <input
-                            type="password"
-                            name="confirmPassword"
-                            required
-                            minlength="8"
-                            class="form-control"
-                            id="confirmPassword"
-                            placeholder="Password"
-                          />
-                          <label for="confirmPassword">Confirm password</label>
-                        </div>
-
-                        <div class="d-flex justify-content-center">
-                          <div>
-                            <button
-                              type="submit"
-                              class="btn btn-outline-primary shadow-sm mt-3 align-middle d-flex gap-3 align-items-center fw-bold"
-                            >
-                              Register
-                              <span
-                                id="spinnerRegister"
-                                class="spinner-border spinner-border-sm text-secondary d-none"
-                                role="status"
-                              >
-                                <span class="visually-hidden">Loading...</span>
-                              </span>
-                            </button>
-                          </div>
-                        </div>
-                      </form>
+                  <div
+                    class="d-flex flex-column align-items-center text-secondary small"
+                  >
+                    <p class="mb-0">
+                      Register or log in to access all of Auction House's
+                      features.
+                    </p>
+                    <div class="d-flex gap-3">
+                      <a class="small fw-bold" href="auth/index.html">Login</a>
+                      <a class="small fw-bold" href="auth/index.html"
+                        >Register</a
+                      >
                     </div>
                   </div>
 
