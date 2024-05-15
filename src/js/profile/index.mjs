@@ -20,7 +20,6 @@ import { getProfileInfo } from "../shared/profileInfo.mjs";
 import { checkUserAuth } from "../shared/checkUserAuth.mjs";
 import { displaySpinner } from "../shared/displaySpinner.mjs";
 import { displayError } from "../shared/displayErrorMsg.mjs";
-import { statusMsg } from "../feed/createListing.mjs";
 import { countDown } from "../shared/calcCountdown.mjs";
 import { daysOfWeek } from "../shared/daysOfWeek.mjs";
 
@@ -110,10 +109,9 @@ let bidsProfile = [];
  */
 
 // --------------------------------------------------
-//FIXME: Duplicate Types !!!
 
 /** @typedef {object} GetProfileDataResponse2
-/** @typedef {object} json
+ *  @type {object}
  * @property {string} name
  * @property {string} email
  * @property {string} bio
@@ -159,10 +157,10 @@ let bidsProfile = [];
  * @property {string} listing.id
  * @property {string} listing.title
  * @property {string} listing.description
- * @property {string[]} listings.tags
  * @property {string} listing.created
  * @property {string} listing.updated
  * @property {string} listing.endsAt
+ * @property {string[]} listings.tags
  */
 
 /** @typedef  GetProfileBidsMetaResponse
@@ -185,7 +183,6 @@ let bidsProfile = [];
 /** @type {string} */
 let name;
 
-//TODO: JsDocs
 export function init() {
   checkUserAuth();
   addEventToEditProfile();
@@ -195,41 +192,47 @@ export function init() {
   if (username) {
     name = username;
 
-    /** @type {HTMLImageElement} */
-    const img = document.querySelector("#author-image");
-    img.src = avatarUrl;
+    updateProfile(avatarUrl, username, bio);
 
-    /** @type {HTMLHeadingElement} */
-    const authorInfoName = document.querySelector("#author-info h2");
-    authorInfoName.innerText = username;
+    // /** @type {HTMLImageElement} */
+    // const img = document.querySelector("#author-image");
+    // img.src = avatarUrl;
 
-    /** @type {HTMLParagraphElement} */
-    const authorInfoBio = document.querySelector("#author-info p");
-    authorInfoBio.innerHTML = bio;
+    // /** @type {HTMLHeadingElement} */
+    // const authorInfoName = document.querySelector("#author-info h2");
+    // authorInfoName.innerText = username;
+
+    // /** @type {HTMLParagraphElement} */
+    // const authorInfoBio = document.querySelector("#author-info p");
+    // authorInfoBio.innerHTML = bio;
 
     displayListings(username);
 
     displayBids(username);
 
     fetchUserMetaData(username);
-    fetchUpdateProfile(username, avatarUrl);
+    // fetchUpdateProfile(username, avatarUrl);
   }
 
   /** @type {HTMLSelectElement} */
-  const tabSort = document.querySelector("#order-By-Listings");
-  tabSort.addEventListener("change", handleOrderBy);
+  const tabSortListings = document.querySelector("#order-By-Listings");
+  tabSortListings.addEventListener("change", listingsHandleOrderBy);
+
+  /** @type {HTMLSelectElement} */
+  const tabSortBids = document.querySelector("#order-By-Bids");
+  tabSortBids.addEventListener("change", bidsHandleOrderBy);
 }
 
 /**
  * @description Sort the user array listings by a specified key
- * @method handleOrderBy
+ * @method listingsHandleOrderBy
  * @param {Event} ev The event from the `select` element.
  * @example
  * // if the select value is 'title', it return the listings sorted alphabetically a-z.
  * // if the select value is 'newest', it returns the newest listings first.
  * // if the select value is 'oldest', it returns the oldest listings first.
  */
-function handleOrderBy(ev) {
+function listingsHandleOrderBy(ev) {
   const select = /** @type {HTMLSelectElement} */ (ev.currentTarget);
   const oby = select.value;
 
@@ -247,6 +250,35 @@ function handleOrderBy(ev) {
     });
   }
   updateListings(dataProfile);
+}
+
+/**
+ * @description Sort the user array bids by a specified key
+ * @method listingsHandleOrderBy
+ * @param {Event} ev The event from the `select` element.
+ * @example
+ * // if the select value is 'title', it return the bids sorted alphabetically a-z.
+ * // if the select value is 'newest', it returns the newest bids first.
+ * // if the select value is 'oldest', it returns the oldest bids first.
+ */
+function bidsHandleOrderBy(ev) {
+  const select = /** @type {HTMLSelectElement} */ (ev.currentTarget);
+  const oby = select.value;
+
+  if (oby === "title") {
+    bidsProfile.sort((a, b) =>
+      a.listing.title.toLowerCase() > b.listing.title.toLowerCase() ? 1 : -1,
+    );
+  } else if (oby === "newest") {
+    bidsProfile.sort(function (v1, v2) {
+      return new Date(v2.created).getTime() - new Date(v1.created).getTime();
+    });
+  } else if (oby === "oldest") {
+    bidsProfile.sort(function (v1, v2) {
+      return new Date(v1.created).getTime() - new Date(v2.created).getTime();
+    });
+  }
+  updateBids(bidsProfile);
 }
 
 /**
@@ -453,25 +485,25 @@ export async function fetchUserMetaData(username) {
 }
 
 /**
- * @description Displays the number of listings, the number of followers and the number of following.
+ * @description Displays the number of wins, the number of listings and the number of credits.
  * @method displayUserMetaData
  * @param {GetProfileDataResponse} profileInfo user profile info
  */
 async function displayUserMetaData(profileInfo) {
-  /** @type {GetProfileDataResponse} */
-  profileInfo;
+  // /** @type {GetProfileDataResponse} */
+  // profileInfo;
 
   /** @type {HTMLDivElement} */
-  const totListings = document.querySelector("#totCredits");
-  totListings.innerText = String(profileInfo.credits);
+  const totFollowing = document.querySelector("#totWins");
+  totFollowing.innerText = String(profileInfo._count.wins);
 
   /** @type {HTMLDivElement} */
   const totFollowers = document.querySelector("#totListings");
   totFollowers.innerText = String(profileInfo._count.listings);
 
   /** @type {HTMLDivElement} */
-  const totFollowing = document.querySelector("#totWins");
-  totFollowing.innerText = String(profileInfo._count.wins);
+  const totListings = document.querySelector("#totCredits");
+  totListings.innerText = String(profileInfo.credits);
 }
 
 /**
@@ -503,6 +535,7 @@ async function addEventToEditProfile() {
     dialog.close();
   });
 
+  //Update avatar image
   profileForm.addEventListener("submit", async (ev) => {
     ev.preventDefault();
 
@@ -511,13 +544,33 @@ async function addEventToEditProfile() {
     avatarUrl = form.elements["avatarUrl"].value;
     const result = await fetchUpdateProfile(name, avatarUrl);
     if (result) {
-      await fetchUserMetaData(name);
-
-      statusMsg(true, "Well done! You have updated your profile image.");
+      // await fetchUserMetaData(name);
+      updateProfile(result.avatar.url, result.name, result.bio);
 
       dialog.close();
     }
   });
+}
+
+/**
+ * @description Update user avatar, name and bio
+ * @method updateProfile
+ * @param {string} avatarUrl  The url of the user image/avatar
+ * @param {string} username  The user name
+ * @param {string} bio  The user bio
+ */
+function updateProfile(avatarUrl, username, bio) {
+  /** @type {HTMLImageElement} */
+  const img = document.querySelector("#author-image");
+  img.src = avatarUrl;
+
+  /** @type {HTMLHeadingElement} */
+  const authorInfoName = document.querySelector("#author-info h2");
+  authorInfoName.innerText = username;
+
+  /** @type {HTMLParagraphElement} */
+  const authorInfoBio = document.querySelector("#author-info p");
+  authorInfoBio.innerHTML = bio;
 }
 
 /**
@@ -556,7 +609,7 @@ export async function fetchUpdateProfile(username, avatarUrl) {
       /** @type {GetProfileResponse2} */
       const profileData = await response.json();
 
-      dataProfile = profileData.data;
+      const dataProfile = profileData.data;
 
       save("profile", dataProfile);
 
@@ -643,7 +696,7 @@ export async function updateBids(data) {
 
       bid.querySelector("article").dataset.id = String(item.id);
 
-      const endsAtDate = new Date(item.endsAt);
+      const endsAtDate = new Date(item.listing.endsAt);
       countDown(
         1 * 1000,
         endsAtDate,
@@ -655,7 +708,7 @@ export async function updateBids(data) {
             const dayOfWeek = daysOfWeek[endsAtDate.getDay()];
             deadline.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s Left, ${dayOfWeek}`;
           } else {
-            deadline.innerHTML = `<div class="p-3 text-secondary-emphasis bg-secondary-subtle border border-secondary-subtle rounded-3 fw-bold">EXPIRED<div/>`;
+            deadline.innerHTML = `<div class="text-danger fw-bold">EXPIRED<div/>`;
           }
         },
       );
@@ -663,23 +716,41 @@ export async function updateBids(data) {
       bid.querySelector("#bodyBidTitle").innerHTML = sanitize(
         item.listing.title,
       );
+
       bid.querySelector("#bodyBid").innerHTML = sanitize(
         item.listing.description,
       );
+
       bid.querySelector("#amount").innerHTML = String(item.amount);
 
-      //endAt
-      let newDate = new Date(item.created);
       /** @type Intl.DateTimeFormatOptions */
-      const options2 = {
+      const options = {
         // weekday: "long",
         year: "numeric",
         month: "numeric",
         day: "numeric",
       };
+
+      const placedAtDate = new Date(item.created);
+      let placedAtDateString = placedAtDate.toLocaleDateString(
+        "no-NO",
+        options,
+      );
+      bid.querySelector("#placedAt").innerHTML = placedAtDateString;
+
       // `BCP 47 language tag` => no-NO
-      let newDateString = newDate.toLocaleDateString("no-NO", options2);
-      bid.querySelector("#endsAt").innerHTML = newDateString;
+      let endsAtDateString = endsAtDate.toLocaleDateString("no-NO", options);
+      bid.querySelector("#endsAt").innerHTML = endsAtDateString;
+
+      const accordionBid = `accordion_${item.id}`;
+
+      /** @type {HTMLButtonElement} */
+      const btnCollapseBid = bid.querySelector("#btnCollapseBid");
+      btnCollapseBid.dataset.bsTarget = `#${accordionBid}`;
+
+      /** @type {HTMLDivElement} */
+      const descBidBox = bid.querySelector("#collapseBid");
+      descBidBox.id = `${accordionBid}`;
 
       bids.appendChild(bid);
     }
