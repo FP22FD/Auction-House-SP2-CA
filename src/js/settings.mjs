@@ -3,7 +3,7 @@ export const API_BASE = "https://v2.api.noroff.dev";
 
 // @ts-ignore
 // eslint-disable-next-line no-undef
-export const API_KEY = import.meta.env.VITE_API_KEY || __VITE_API_KEY__;
+export const API_KEY = import.meta.env.VITE_API_KEY || "__VITE_API_KEY__";
 
 export const API_REGISTER = "/register";
 export const API_LOGIN = "/login";
