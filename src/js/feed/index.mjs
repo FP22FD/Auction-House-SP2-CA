@@ -3,18 +3,16 @@
 import "../../scss/styles.scss";
 
 import {
-  API_KEY,
   API_BASE,
   API_LISTINGS,
   API_GET_LISTINGS_PARAMS,
 } from "../settings.mjs";
-import { load } from "../shared/storage.mjs";
 import { ErrorHandler } from "../shared/errorHandler.mjs";
 import { displaySpinner } from "../shared/displaySpinner.mjs";
 import { displayError } from "../shared/displayErrorMsg.mjs";
 import { sanitize } from "../shared/sanitize.mjs";
-import { daysOfWeek } from "../shared/daysOfWeek.mjs";
-import { countDown } from "../shared/calcCountdown.mjs";
+import { handleBidSubmit } from "./bidOnListing.mjs";
+import { load } from "../shared/storage.mjs";
 
 /** @typedef GetAuctionListingsDataResponse
  * @type {object}
@@ -48,8 +46,6 @@ import { countDown } from "../shared/calcCountdown.mjs";
  */
 
 export function init() {
-  // checkUserAuth();
-
   /** @type {HTMLInputElement} */
   const txtFilter = document.querySelector("#filter"); // input
   txtFilter.addEventListener("input", handleSearchInput);
@@ -70,8 +66,8 @@ export async function displayListings() {
 
     const response = await fetch(url, {
       headers: {
-        Authorization: `Bearer ${load("token")}`,
-        "X-Noroff-API-Key": API_KEY,
+        //   Authorization: `Bearer ${load("token")}`,
+        //   "X-Noroff-API-Key": API_KEY,
         "Content-Type": "application/json",
       },
       method: "GET",
@@ -81,7 +77,6 @@ export async function displayListings() {
       /** @type {GetAuctionListingsResponse} */
       const listingsData = await response.json();
       data = listingsData.data;
-      // console.log(data);
 
       updateListings(data, "");
       return data;
@@ -145,7 +140,10 @@ export async function updateListings(data, searchInput) {
  * @returns {Object} Return the object listing
  */
 function generateHtml(item) {
-  const { id, title, endsAt, seller, media, description, created } = item;
+  const { title, endsAt, seller, media, description, created } = item;
+
+  //An unregistered user may view through Listings
+  const isAuth = !!load("token");
 
   /** @type {HTMLTemplateElement} */
   const template = document.querySelector("#listing");
@@ -155,19 +153,23 @@ function generateHtml(item) {
 
   listing.querySelector("article").dataset.id = item.id;
 
+  /** @type Intl.DateTimeFormatOptions */
+  const options = {
+    // weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
   // listing.querySelector("#deadline").innerHTML = endsAt;
   const endsAtDate = new Date(endsAt);
-  countDown(60 * 1000, endsAtDate, ({ distance, days, hours, minutes }) => {
-    const deadline = document.querySelector(
-      `article[data-id="${item.id}"] #deadline`,
-    );
-    if (distance > 0) {
-      const dayOfWeek = daysOfWeek[endsAtDate.getDay()];
-      deadline.innerHTML = `${days}d ${hours}h ${minutes}m left, ${dayOfWeek}`;
-    } else {
-      deadline.innerHTML = "EXPIRED";
-    }
-  });
+  if (endsAtDate > new Date()) {
+    let endsAtDateString = endsAtDate.toLocaleDateString("no-NO", options);
+    listing.querySelector("#deadline").innerHTML =
+      endsAtDateString + " - " + "Left";
+  } else {
+    listing.querySelector("#deadline").innerHTML = "EXPIRED";
+  }
 
   listing.querySelector("h5").innerText = seller.name; // + item.id
 
@@ -176,13 +178,7 @@ function generateHtml(item) {
   sellerImg.src = seller.avatar.url;
 
   let date = new Date(created);
-  /** @type Intl.DateTimeFormatOptions */
-  const options = {
-    // weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
+
   // `BCP 47 language tag` => no-NO
   let dateString = date.toLocaleDateString("no-NO", options);
   listing.querySelector("#dateListing").innerHTML = dateString;
@@ -195,10 +191,41 @@ function generateHtml(item) {
   // listing.querySelector("#bodyListing").innerHTML = sanitize(item.body);
   if (bodyTextSanitized.length > textLimit) {
     let htmlBody = bodyTextSanitized.substring(0, textLimit);
-    htmlBody += `...<a href="./postdetails.html?id=${id}" class="link-underline link-underline-opacity-0 blue-500 fw-bold text-nowrap">read more<a/>`;
     bodyText.innerHTML = htmlBody;
   } else {
     bodyText.innerHTML = sanitize(description);
+  }
+
+  //The entry point code for bid on listing
+  if (isAuth) {
+    listing.querySelector(`#btnPlaceBid`).classList.remove("d-none");
+
+    listing.querySelector(`#btnPlaceBid`).addEventListener("click", (ev) => {
+      ev.preventDefault();
+
+      const placeBid = document.querySelector(
+        `article[data-id="${item.id}"] #btnPlaceBid`,
+      );
+      placeBid.classList.add("d-none");
+
+      const PlaceOnListing = document.querySelector(
+        `article[data-id="${item.id}"] #PlaceOnListing`,
+      );
+      PlaceOnListing.classList.remove("d-none");
+      PlaceOnListing.classList.add("d-flex");
+    });
+
+    listing
+      .querySelector("#createBid")
+      .addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+
+        console.log(item.id);
+
+        handleBidSubmit(item.id, ev);
+      });
+  } else {
+    listing.querySelector(`#linkPlaceBid`).classList.remove("d-none");
   }
 
   if (media) {
@@ -212,7 +239,6 @@ function generateHtml(item) {
 
     const carouselNewId = `carousel_${item.id}`;
     CloneCarousel.querySelector(".carousel").id = carouselNewId;
-    // console.log("New Id", carouselNewId);
 
     /** @type {HTMLButtonElement} */
     const prev = CloneCarousel.querySelector(".carousel-control-prev");
@@ -227,7 +253,6 @@ function generateHtml(item) {
 
     for (let i = 0; i < media.length; i++) {
       const img = media[i];
-      // console.log("listing images", img);
 
       imgs.innerHTML += `<div  class="carousel-item ${i === 0 ? "active" : ""}"><img src="${img.url}" class="d-block card-img" alt="${img.alt}"></div>`;
     }
@@ -252,53 +277,3 @@ async function handleSearchInput(ev) {
   const userInput = /** @type {HTMLInputElement} */ ev.currentTarget.value;
   updateListings(data, userInput);
 }
-
-// // Ref: https://www.w3schools.com/howto/howto_js_countdown.asp
-// function countDown(intervalMs, date, callback) {
-//   const countDownDate = date.getTime();
-
-//   // Ref: How to tick immediately: https://stackoverflow.com/a/20706004
-//   setTimeout(() => {
-//     const now = new Date().getTime();
-//     const { distance, days, hours, minutes, seconds } = calcCountdown(
-//       now,
-//       countDownDate,
-//     );
-//     callback({ distance, days, hours, minutes, seconds });
-//   }, 0);
-
-//   const x = setInterval(function () {
-//     const now = new Date().getTime();
-
-//     const { distance, days, hours, minutes, seconds } = calcCountdown(
-//       now,
-//       countDownDate,
-//     );
-
-//     callback({ distance, days, hours, minutes, seconds });
-
-//     if (distance < 0) {
-//       clearInterval(x);
-//     }
-//   }, intervalMs);
-// }
-
-// // TODO: make unit test
-// export function calcCountdown(start, end) {
-//   const distance = end - start;
-
-//   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-//   const hours = Math.floor(
-//     (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-//   );
-//   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-//   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-//   return {
-//     distance,
-//     days,
-//     hours,
-//     minutes,
-//     seconds,
-//   };
-// }

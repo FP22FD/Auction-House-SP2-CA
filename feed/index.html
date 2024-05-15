@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Auction House app. Increase your popularity by sharing your opinion with the world."
+      content="Auction House. Here you can find deals, sell your stuff, buy art, jewelry and much more."
     />
     <title>Auction House | Listings page</title>
     <link type="image/x-icon" rel="stylesheet" href="/favicon.ico" />
@@ -28,11 +28,15 @@
             id="navMenuHamburger"
           >
             <div class="navbar-nav">
-              <a class="nav-link" aria-current="page" href="/profile/index.html"
+              <a
+                class="nav-link"
+                id="profile"
+                aria-current="page"
+                href="/profile/index.html"
                 >Profile</a
               >
               <a class="nav-link active" href="/feed/index.html">Listings</a>
-              <a class="nav-link" href="/start.html">Start</a>
+              <a class="nav-link" href="/start.html">Home</a>
 
               <button
                 type="button"
@@ -139,24 +143,24 @@
 
           <div class="justify-content-center">
             <div id="listings"></div>
-
             <template id="listing">
               <article class="card mb-3 border-0 shadow-sm" data-id="">
-                <p id="deadline" class="text-secondary align-self-end m-3"></p>
-
-                <div class="card-header border-0 vstack gap-2 bg-white">
+                <p
+                  id="deadline"
+                  class="text-secondary fw-bold small align-self-end m-3 border shadow py-2 px-4 shadow-sm rounded-4"
+                ></p>
+                <div class="card-header border-0 vstack gap-4 bg-white">
                   <div class="hstack gap-2">
                     <img
                       id="sellerImg"
                       src="#"
                       alt="User image"
-                      class="rounded-circle mw-100 object-fit-cover me-1"
+                      class="rounded-circle object-fit-cover me-1"
                       width="50"
                       height="50"
                     />
                     <div class="flex-fill">
                       <h5 class="mb-1"></h5>
-                      <h3 class="mb-1"></h3>
                       <p id="dateListing" class="card-text">
                         <small class="text-body-secondary"></small>
                       </p>
@@ -170,13 +174,22 @@
                       ></button>
 
                       <button
-                        id="edit"
+                        id="btnPlaceBid"
                         type="button"
                         role="button"
-                        class="btn btn-outline-primary shadow-sm"
+                        class="btn btn-outline-primary shadow-sm d-none"
                       >
                         Place bid
                       </button>
+
+                      <a
+                        id="linkPlaceBid"
+                        href="/start.html"
+                        role="button"
+                        class="btn btn-outline-primary shadow-sm d-none"
+                      >
+                        Place bid
+                      </a>
                     </div>
                   </div>
 
@@ -193,9 +206,45 @@
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div class="card-body d-flex justify-content-between"></div>
+                  <div
+                    id="PlaceOnListing"
+                    class="card-body vstack border-top border-1 px-0 d-none"
+                  >
+                    <form
+                      action="#"
+                      method="post"
+                      id="createBid"
+                      class="hstack justify-content-between"
+                    >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="amountBid"
+                        placeholder="Your offer..."
+                        min="1"
+                        required
+                        aria-label="amountBid"
+                        name="amount"
+                      />
+
+                      <button
+                        type="submit"
+                        class="btn btn-outline-primary ms-3 px-4"
+                      >
+                        <span
+                          id="spinnerBid"
+                          class="spinner-grow spinner-grow-sm d-none"
+                          aria-hidden="true"
+                        ></span>
+                        Bid
+                      </button>
+                    </form>
+
+                    <div id="statusBidMsg" class="text-success d-none"></div>
+                    <div id="errorBidMsg" class="text-danger d-none"></div>
+                  </div>
+                </div>
               </article>
             </template>
 
@@ -244,8 +293,9 @@
                   id="seller-image"
                   src="#"
                   alt="User image"
-                  class="rounded-circle img-fluid me-1"
+                  class="rounded-circle me-1 object-fit-cover"
                   width="50"
+                  height="50"
                 />
                 <h5 id="seller-name" class="mb-1 h6"></h5>
               </div>
