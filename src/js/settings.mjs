@@ -1,3 +1,9 @@
+// Deployed base path
+// @ts-ignore
+export const APP_GITHUB_PAGES_REPO =
+  import.meta.env.VITE_APP_GITHUB_PAGES_REPO ||
+  "__VITE_APP_GITHUB_PAGES_REPO__"; // 'Auction-House-SP2-CA'
+
 //storage API endpoints
 export const API_BASE = "https://v2.api.noroff.dev";
 

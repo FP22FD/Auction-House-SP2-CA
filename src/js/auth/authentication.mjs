@@ -39,7 +39,7 @@ function addEventToLogin() {
     if (profile === null) {
       return;
     }
-    window.location.href = "/profile/index.html";
+    window.location.href = "../profile/index.html";
   });
 }
 
@@ -73,7 +73,7 @@ function addEventToRegister() {
       return;
     }
 
-    window.location.href = "/profile/index.html";
+    window.location.href = "../profile/index.html";
   });
 }
 
