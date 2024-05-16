@@ -37,6 +37,7 @@ jobs:
         uses: falnyr/replace-env-vars-action@v1.3.2
         env:
           VITE_API_KEY: ${{secrets.VITE_API_KEY}}
+          VITE_APP_GITHUB_PAGES_REPO: ${{secrets.VITE_APP_GITHUB_PAGES_REPO}}
         with:
           filename: src/js/settings.mjs
 

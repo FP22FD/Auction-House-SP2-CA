@@ -7,9 +7,14 @@ import { init as initSearch } from "../feed/search.mjs";
 import { init as initNotAuthorized } from "../feed/notAuthorized.mjs";
 import { init as initLogout } from "../shared/logout.mjs";
 import { load } from "../shared/storage.mjs";
+import { APP_GITHUB_PAGES_REPO } from "../settings.mjs";
 
 function router() {
-  const pathname = window.location.pathname;
+  let pathname = window.location.pathname;
+
+  if (APP_GITHUB_PAGES_REPO) {
+    pathname = pathname.replace(`/${APP_GITHUB_PAGES_REPO}`, "");
+  }
 
   const token = load("token");
   const isAuth = !!token;
