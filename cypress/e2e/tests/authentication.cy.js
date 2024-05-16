@@ -8,13 +8,13 @@
 describe("Check login", () => {
     it("Checks user Authorized", () => {
         // Arrange
-        cy.visit("https://github.com/FP22FD/Auction-House-SP2-CA/")
+        cy.visit("https://fp22fd.github.io/Auction-House-SP2-CA/")
         // cy.visit("http://127.0.0.1:8080/")
         cy.get('#btnLogin').click();
 
         cy.get(('#loginEmail')).type("userfernanda@noroff.no", { delay: 20 });
         cy.get('#loginPassword').type("UserProfile874", { delay: 20 });
-        cy.intercept('/profile/index.html').as('profile-page')
+        cy.intercept('https://fp22fd.github.io/Auction-House-SP2-CA/profile/index.html').as('profile-page')
 
         // Act
         cy.get('#login-form button').click();
@@ -25,7 +25,7 @@ describe("Check login", () => {
 
     it("Checks user not Authorized", () => {
         // Arrange
-        cy.visit("https://github.com/FP22FD/Auction-House-SP2-CA/")
+        cy.visit("https://fp22fd.github.io/Auction-House-SP2-CA/")
         // cy.visit("http://127.0.0.1:8080/")
         cy.get('#btnLogin').click();
 
