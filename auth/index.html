@@ -11,6 +11,23 @@
     <link type="image/x-icon" rel="stylesheet" href="../favicon.ico" />
 
     <script type="module" src="/src/js/router/router.mjs"></script>
+
+    <!-- Hotjar Tracking Code for Auction House -->
+    <script>
+      (function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+          };
+        h._hjSettings = { hjid: 4985246, hjsv: 6 };
+        a = o.getElementsByTagName("head")[0];
+        r = o.createElement("script");
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+    </script>
   </head>
 
   <body>
@@ -108,7 +125,7 @@
                             name="loginEmail"
                             required
                             minlength="8"
-                            pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+                            pattern="^[\w\-.]+@(stud\.)"
                             class="form-control"
                             id="loginEmail"
                             placeholder="name@example.com"
@@ -185,16 +202,21 @@
                         </div>
 
                         <div class="form-floating mb-3">
+                          <!-- <input type="email" name="emailAddress" required minlength="8"
+                          pattern="^[\w\-.]+@(stud\.)?noroff\.no$" class="form-control" id="registerEmail"
+                          placeholder="name@example.com"
+                          title="Only @noroff.no or @stud.noroff.no email can register profile" /> -->
+
                           <input
                             type="email"
                             name="emailAddress"
                             required
                             minlength="8"
-                            pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+                            pattern="^[\w\-.]+@(stud\.)"
                             class="form-control"
                             id="registerEmail"
                             placeholder="name@example.com"
-                            title="Only @noroff.no or @stud.noroff.no email can register profile"
+                            title="Only @stud.noroff.no email can register profile"
                           />
                           <label for="registerEmail">Email address</label>
                         </div>
