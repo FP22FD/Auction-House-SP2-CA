@@ -12,8 +12,8 @@ describe("Check login", () => {
         // cy.visit("http://127.0.0.1:8080/")
         cy.get('#btnLogin').click();
 
-        cy.get(('#loginEmail')).type("userfernanda@noroff.no", { delay: 20 });
-        cy.get('#loginPassword').type("UserProfile874", { delay: 20 });
+        cy.get(('#loginEmail')).type("tester@stud.noroff.no", { delay: 20 });
+        cy.get('#loginPassword').type("Tester874", { delay: 20 });
         cy.intercept('https://fp22fd.github.io/Auction-House-SP2-CA/profile/index.html').as('profile-page')
 
         // Act
@@ -29,7 +29,7 @@ describe("Check login", () => {
         // cy.visit("http://127.0.0.1:8080/")
         cy.get('#btnLogin').click();
 
-        cy.get(('#loginEmail')).type("userfederica@noroff.no", { delay: 20 });
+        cy.get(('#loginEmail')).type("userfederica@stud.noroff.no", { delay: 20 });
         cy.get('#loginPassword').type("wrong-password", { delay: 20 });
         cy.intercept("POST", "https://v2.api.noroff.dev/auth/login").as("POST-login");
 
