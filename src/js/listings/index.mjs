@@ -191,17 +191,10 @@ function generateHtml(item) {
   listing.querySelector("#dateListing").innerHTML = dateString;
 
   listing.querySelector("#bodyTitle").innerHTML = sanitize(title);
-  const textLimit = 50;
-  const bodyText = listing.querySelector("#viewListing");
-  let bodyTextSanitized = sanitize(description);
 
-  // listing.querySelector("#bodyListing").innerHTML = sanitize(item.body);
-  if (bodyTextSanitized.length > textLimit) {
-    let htmlBody = bodyTextSanitized.substring(0, textLimit);
-    bodyText.innerHTML = htmlBody;
-  } else {
-    bodyText.innerHTML = sanitize(description);
-  }
+  const bodyText = listing.querySelector("#viewListing");
+  let descriptionSanitized = sanitize(description);
+  bodyText.innerHTML = descriptionSanitized;
 
   const history = listing.querySelector("#history");
   const hasBids = item.bids.length > 0;
