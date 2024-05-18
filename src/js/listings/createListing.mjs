@@ -124,11 +124,7 @@ async function createListing(listingData) {
 
     return null;
   } catch (ev) {
-    displayError(
-      true,
-      "#errorCreateListing",
-      "Something went wrong, try again!",
-    );
+    displayError(true, "#errorCreateListing", "Something went wrong, try again!");
   } finally {
     displaySpinner(false, "#spinnerCreateListing");
   }

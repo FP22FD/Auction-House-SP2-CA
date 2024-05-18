@@ -10,5 +10,5 @@ export function init() {
 async function addEventToLogoutBtn() {
   localStorage.clear();
 
-  window.location.href = `/${APP_GITHUB_PAGES_REPO}`;
+  window.location.href = `/${APP_GITHUB_PAGES_REPO}/`;
 }

@@ -34,8 +34,7 @@ export class ErrorHandler {
       const data = await this._response.json();
       errorMessage = data.errors[0].message;
     } else if (this._response.status === 401) {
-      errorMessage =
-        "Invalid username or password or you do not have an account yet!";
+      errorMessage = "Invalid username or password or you do not have an account yet!";
     } else if (this._response.status === 404) {
       errorMessage = "The requested resource was not found!";
     } else {

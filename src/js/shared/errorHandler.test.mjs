@@ -49,9 +49,7 @@ describe("ErrorHandler -> getErrorMessage", async () => {
     const result = await eh.getErrorMessage();
 
     // Assert
-    expect(result).toBe(
-      "Invalid username or password or you do not have an account yet!",
-    );
+    expect(result).toBe("Invalid username or password or you do not have an account yet!");
   });
 
   it("should return a human readable 404", async () => {

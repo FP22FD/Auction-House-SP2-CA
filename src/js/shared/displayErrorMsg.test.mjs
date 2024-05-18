@@ -15,12 +15,8 @@ describe("displayError", () => {
 
     // assert
     expect(document.querySelector("#error").innerHTML).toBe("Bla bla");
-    expect(document.querySelector("#error").classList.contains("d-flex")).toBe(
-      true,
-    );
-    expect(document.querySelector("#error").classList.contains("d-none")).toBe(
-      false,
-    );
+    expect(document.querySelector("#error").classList.contains("d-flex")).toBe(true);
+    expect(document.querySelector("#error").classList.contains("d-none")).toBe(false);
   });
 
   it("should hide an error message", async () => {
@@ -32,11 +28,7 @@ describe("displayError", () => {
 
     // assert
     expect(document.querySelector("#error").innerHTML).toBe("");
-    expect(document.querySelector("#error").classList.contains("d-flex")).toBe(
-      false,
-    );
-    expect(document.querySelector("#error").classList.contains("d-none")).toBe(
-      true,
-    );
+    expect(document.querySelector("#error").classList.contains("d-flex")).toBe(false);
+    expect(document.querySelector("#error").classList.contains("d-none")).toBe(true);
   });
 });

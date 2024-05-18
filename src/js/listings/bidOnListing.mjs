@@ -39,9 +39,7 @@ import { ErrorHandler } from "../shared/errorHandler.mjs";
  */
 export function statusMsg(listingId, visible, text) {
   /** @type {HTMLDivElement} */
-  const status = document.querySelector(
-    `article[data-id="${listingId}"] #statusBidMsg`,
-  );
+  const status = document.querySelector(`article[data-id="${listingId}"] #statusBidMsg`);
 
   if (visible === true) {
     status.classList.remove("d-none");
@@ -62,9 +60,7 @@ export function statusMsg(listingId, visible, text) {
  */
 export function displayError(listingId, visible, text) {
   /** @type {HTMLDivElement} */
-  const status = document.querySelector(
-    `article[data-id="${listingId}"] #errorBidMsg`,
-  );
+  const status = document.querySelector(`article[data-id="${listingId}"] #errorBidMsg`);
 
   if (visible === true) {
     status.classList.remove("d-none");
@@ -83,9 +79,7 @@ export function displayError(listingId, visible, text) {
  * @param {boolean} spinnerVisible If true, shows the spinner, otherwise hides it.
  */
 export function displaySpinner(listingId, spinnerVisible) {
-  const spinner = document.querySelector(
-    `article[data-id="${listingId}"] #spinnerBid`,
-  ); //es: #spinnerListings, and others
+  const spinner = document.querySelector(`article[data-id="${listingId}"] #spinnerBid`); //es: #spinnerListings, and others
 
   if (!spinner) {
     return;

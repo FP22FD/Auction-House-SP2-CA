@@ -9,7 +9,7 @@ export default defineConfig({
             input: {
                 main: resolve(__dirname, 'index.html'),
                 auth: resolve(__dirname, 'auth/index.html'),
-                listing: resolve(__dirname, 'feed/index.html'),
+                listing: resolve(__dirname, 'listings/index.html'),
                 profile: resolve(__dirname, 'profile/index.html')
             },
         },
