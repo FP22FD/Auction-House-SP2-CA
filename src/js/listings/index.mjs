@@ -274,7 +274,7 @@ function generateHtml(item) {
     for (let i = 0; i < media.length; i++) {
       const img = media[i];
 
-      imgs.innerHTML += `<div  class="carousel-item ${i === 0 ? "active" : ""}"><img src="${img.url}" class="d-block card-img" alt="${img.alt}"></div>`;
+      imgs.innerHTML += `<div  class="carousel-item ${i === 0 ? "active" : ""}"><img src="${img.url}" class="d-block w-100 card-img" alt="${img.alt}"></div>`;
     }
 
     if (media.length <= 1) {
