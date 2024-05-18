@@ -14,7 +14,7 @@ export const API_LOGIN = "/login";
 export const API_AUTH = "/auth";
 
 export const API_LISTINGS = "/auction/listings";
-export const API_SEARCH = "/search?_seller=true&_active=true&q=";
+export const API_SEARCH = "/search?_seller=true&_bids=true&_active=true&q=";
 export const API_GET_LISTINGS_PARAMS = "?sort=created&sortOrder=desc&limit=100&_seller=true&_bids=true&_active=true";
 
 export const API_DATA_PROFILE = (name) => `/auction/profiles/${name}`;
