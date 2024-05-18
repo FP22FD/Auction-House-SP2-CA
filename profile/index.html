@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Auction House app. Look at your profile and see your listings, bids and Wins."
+      content="Auction House website. Look at your profile and see your listings, bids and Wins."
     />
     <title>Auction House | Profile page</title>
-    <link type="image/x-icon" rel="stylesheet" href="../favicon.ico" />
+    <link type="image/x-icon" rel="icon" href="../favicon.ico" />
 
     <script type="module" src="../src/js/router/router.mjs"></script>
 
@@ -35,27 +36,16 @@
       <nav class="navbar navbar-expand-lg sticky-top mx-3">
         <div class="container-fluid d-flex">
           <div>
-            <a class="navbar-brand object-fit-cover" href="../feed/index.html">
+            <a class="navbar-brand object-fit-cover" href="../listings/index.html">
               <img src="/logo.svg" alt="logo" height="50" />
             </a>
           </div>
-          <div
-            class="collapse navbar-collapse justify-content-end"
-            id="navMenuHamburger"
-          >
+          <div class="collapse navbar-collapse justify-content-end" id="navMenuHamburger">
             <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#"
-                >Profile</a
-              >
-              <a class="nav-link" href="../feed/index.html">Feed</a>
+              <a class="nav-link active" aria-current="page" href="#">Profile</a>
+              <a class="nav-link" href="../listings/index.html">Listings</a>
               <a class="nav-link" href="../index.html">Home</a>
-              <button
-                type="button"
-                id="logout"
-                class="btn nav-link text-start shadow-none"
-              >
-                Logout
-              </button>
+              <button type="button" id="logout" class="btn nav-link text-start shadow-none">Logout</button>
             </div>
           </div>
           <button
@@ -76,29 +66,11 @@
     <div class="container bg-white align-items-center my-5">
       <div class="row gap-2 justify-content-around">
         <div id="profileData" class="col-xl-2 h-25 mt-3 p-xl-0">
-          <div
-            class="card d-flex flex-column flex-fill align-items-center gap-3 p-3 border-0 shadow-sm"
-          >
-            <div
-              id="errorProfileData"
-              class="error invalid-feedback text-center my-5 py-5 d-none"
-            ></div>
-            <div
-              id="spinnerProfileData"
-              class="gap-1 text-center my-5 py-5 d-none"
-            >
-              <div
-                class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
-                role="status"
-              ></div>
-              <div
-                class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
-                role="status"
-              ></div>
-              <div
-                class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
-                role="status"
-              ></div>
+          <div class="card d-flex flex-column flex-fill align-items-center gap-3 p-3 border-0 shadow-sm">
+            <div id="spinnerProfileData" class="gap-1 text-center my-5 py-5 d-none">
+              <div class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary" role="status"></div>
+              <div class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6" role="status"></div>
+              <div class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6" role="status"></div>
             </div>
 
             <div class="position-relative">
@@ -117,59 +89,39 @@
             <div id="author-info" class="card-body">
               <div class="text-center mb-3">
                 <div class="text-start mb-4">
-                  <h2 class="card-title h5">Your name</h2>
+                  <h1 class="card-title h5">Your name</h1>
                   <p class="card-text small">Your bio</p>
                 </div>
 
                 <div class="card-text mb-4">
-                  <small
-                    class="text-body-secondary hstack gap-1 align-self-center row"
-                  >
-                    <div
-                      class="d-flex flex-column align-items-center col shadow-sm"
-                    >
+                  <div class="text-body-secondary hstack gap-1 align-self-center row">
+                    <div class="d-flex flex-column align-items-center col shadow-sm">
                       <span id="totWins">0</span>
                       <span class="fw-bold">Wins</span>
                     </div>
-                    <div
-                      class="d-flex flex-column align-items-center col shadow-sm"
-                    >
+                    <div class="d-flex flex-column align-items-center col shadow-sm">
                       <span id="totListings">0</span>
                       <span class="fw-bold">Listings</span>
                     </div>
-                    <div
-                      class="d-flex flex-column align-items-center col shadow-sm"
-                    >
+                    <div class="d-flex flex-column align-items-center col shadow-sm">
                       <span id="totCredits">0</span>
                       <div class="hstack gap-2 align-self-center">
                         <span><i class="bi bi-gem"></i></span>
                         <span class="fw-bold">Credits</span>
                       </div>
                     </div>
-                  </small>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="mb-3">
-              <button
-                id="show-dialog"
-                type="button"
-                role="button"
-                class="btn btn-outline-primary fw-bold"
-              >
-                Edit profile
-              </button>
+              <button id="show-dialog" type="button" class="btn btn-outline-primary fw-bold">Edit profile</button>
             </div>
 
             <dialog id="dialog" class="border-0">
-              <div
-                id="modal-main"
-                class="relative flex flex-col overflow-auto vstack align-items-center"
-              >
-                <div
-                  class="d-flex justify-content-between align-items-center w-100 sticky p-3"
-                >
+              <div id="modal-main" class="relative flex flex-col overflow-auto vstack align-items-center">
+                <div class="d-flex justify-content-between align-items-center w-100 sticky p-3">
                   <h2 class="font-bold m-0">Edit avatar</h2>
                   <button
                     id="close"
@@ -179,12 +131,7 @@
                   ></button>
                 </div>
                 <div id="modal-content" class="p-3">
-                  <form
-                    id="editAvatar"
-                    action="#"
-                    method="post"
-                    class="d-flex flex-column gap-4 align-items-center"
-                  >
+                  <form id="editAvatar" action="#" method="post" class="d-flex flex-column gap-4 align-items-center">
                     <img
                       id="authorAvatar"
                       src="#"
@@ -200,23 +147,14 @@
                         class="form-control rounded-full small"
                         id="avatarUrl"
                         placeholder="Your image url..."
+                        required
                       />
-                      <label
-                        for="avatarUrl"
-                        name="avatar"
-                        class="text-body-secondary"
-                        >Paste the picture url</label
-                      >
+                      <label for="avatarUrl" class="text-body-secondary">Paste the picture url</label>
+                      <div id="errorProfileData" class="error invalid-feedback text-center my-5 py-5 d-none"></div>
                     </div>
 
                     <div>
-                      <button
-                        id="btnUpload"
-                        class="btn btn-primary border shadow-md"
-                        type="submit"
-                      >
-                        Upload
-                      </button>
+                      <button id="btnUpload" class="btn btn-primary border shadow-md" type="submit">Upload</button>
                     </div>
                   </form>
                 </div>
@@ -265,12 +203,7 @@
             >
               <div class="d-flex justify-content-end mb-3">
                 <div id="filter" class="dropdown">
-                  <select
-                    id="order-By-Listings"
-                    class="form-select"
-                    aria-label="sort posts"
-                    data-id="order-ByListings"
-                  >
+                  <select id="order-By-Listings" class="form-select" aria-label="sort posts" data-id="order-ByListings">
                     <option value="title" selected>Title</option>
                     <option value="newest">Newest</option>
                     <option value="oldest">Oldest</option>
@@ -278,43 +211,21 @@
                 </div>
               </div>
 
-              <div
-                id="errorListings"
-                class="error invalid-feedback text-center my-5 py-5 d-none"
-              ></div>
+              <div id="errorListings" class="error invalid-feedback text-center my-5 py-5 d-none"></div>
 
-              <div
-                id="spinnerListings"
-                class="gap-1 text-center my-5 py-5 justify-content-center d-none"
-                data-id=""
-              >
-                <div
-                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
-                  role="status"
-                ></div>
-                <div
-                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
-                  role="status"
-                ></div>
-                <div
-                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
-                  role="status"
-                ></div>
+              <div id="spinnerListings" class="gap-1 text-center my-5 py-5 justify-content-center d-none" data-id="">
+                <div class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary" role="status"></div>
+                <div class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6" role="status"></div>
+                <div class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6" role="status"></div>
               </div>
 
-              <div class="container">
-                <div
-                  id="listings"
-                  class="row row-cols-1 row-cols-md-3 g-4"
-                ></div>
+              <div class="container p-0">
+                <div id="listings" class="row row-cols-1 row-cols-md-3 g-4"></div>
 
                 <template id="listing">
                   <div class="col">
                     <article class="card w-100 h-100 mb-3 border-0 shadow-sm">
-                      <div
-                        id="deadlineListings"
-                        class="text-center text-primary small mt-3"
-                      >
+                      <div id="deadlineListings" class="text-center text-primary small mt-3">
                         2d 23h Left - Thursday, 01:43 PM
                       </div>
 
@@ -348,7 +259,7 @@
                           </div>
                         </div>
                       </div>
-                      <!-- //FIXME: controlla questa parte di codice! -->
+
                       <div class="card-body d-flex flex-column d-none">
                         <div class="mb-3">
                           <div class="mb-3">
@@ -386,29 +297,13 @@
                       <!-- images from js -->
                     </div>
 
-                    <button
-                      class="carousel-control-prev"
-                      type="button"
-                      data-bs-target="#carousel"
-                      data-bs-slide="prev"
-                    >
-                      <span
-                        class="carousel-control-prev-icon"
-                        aria-hidden="true"
-                      ></span>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
                     </button>
 
-                    <button
-                      class="carousel-control-next"
-                      type="button"
-                      data-bs-target="#carousel"
-                      data-bs-slide="next"
-                    >
-                      <span
-                        class="carousel-control-next-icon"
-                        aria-hidden="true"
-                      ></span>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
                   </div>
@@ -416,20 +311,10 @@
               </div>
             </div>
 
-            <div
-              class="tab-pane fade min-vh-100"
-              id="nav-bids"
-              role="tabpanel"
-              aria-labelledby="nav-bids-tab"
-            >
+            <div class="tab-pane fade min-vh-100" id="nav-bids" role="tabpanel" aria-labelledby="nav-bids-tab">
               <div class="d-flex justify-content-end mb-3">
                 <div id="filterBids" class="dropdown">
-                  <select
-                    id="order-By-Bids"
-                    class="form-select"
-                    aria-label="sort posts"
-                    data-id="orderByBids"
-                  >
+                  <select id="order-By-Bids" class="form-select" aria-label="sort posts" data-id="orderByBids">
                     <option value="title" selected>Title</option>
                     <option value="newest">Newest placed</option>
                     <option value="oldest">Oldest placed</option>
@@ -437,40 +322,21 @@
                 </div>
               </div>
 
-              <div
-                id="errorBids"
-                class="error invalid-feedback text-center my-5 py-5 d-none"
-              ></div>
+              <div id="errorBids" class="error invalid-feedback text-center my-5 py-5 d-none"></div>
 
-              <div
-                id="spinnerBids"
-                class="gap-1 text-center my-5 py-5 justify-content-center d-none"
-                data-id=""
-              >
-                <div
-                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary"
-                  role="status"
-                ></div>
-                <div
-                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
-                  role="status"
-                ></div>
-                <div
-                  class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6"
-                  role="status"
-                ></div>
+              <div id="spinnerBids" class="gap-1 text-center my-5 py-5 justify-content-center d-none" data-id="">
+                <div class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary" role="status"></div>
+                <div class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6" role="status"></div>
+                <div class="spinner-grow spinner-grow-sm spinner-border-sm text-secondary fs-6" role="status"></div>
               </div>
 
-              <div class="container">
+              <div class="p-0">
                 <div id="bids" class="row row-cols-1 row-cols-md-3 g-4"></div>
 
                 <template id="bid">
                   <div class="col">
                     <article class="card w-100 h-100 mb-3 border-0 shadow-sm">
-                      <div
-                        id="deadlineBids"
-                        class="text-center text-primary small mt-3"
-                      >
+                      <div id="deadlineBids" class="text-center text-primary small mt-3">
                         2d 23h Left - Thursday, 01:43 PM
                       </div>
                       <div class="card-header border-0 vstack gap-2 bg-white">
@@ -478,18 +344,10 @@
                           <span id="bodyBidTitle" class="fw-bold"></span>
                         </div>
 
-                        <div
-                          class="d-flex flex-column border-bottom mt-3 text-secondary"
-                        >
-                          <div class="hstack justify-content-between">
-                            Amount:<span id="amount"></span>
-                          </div>
-                          <div class="hstack justify-content-between">
-                            Placed at:<span id="placedAt"></span>
-                          </div>
-                          <div class="hstack justify-content-between mb-3">
-                            Ends at:<span id="endsAt"></span>
-                          </div>
+                        <div class="d-flex flex-column border-bottom mt-3 text-secondary">
+                          <div class="hstack justify-content-between">Amount:<span id="amount"></span></div>
+                          <div class="hstack justify-content-between">Placed at:<span id="placedAt"></span></div>
+                          <div class="hstack justify-content-between mb-3">Ends at:<span id="endsAt"></span></div>
                         </div>
 
                         <div id="containerBid" class="h-100 vstack w-100">
@@ -508,14 +366,9 @@
                           </p>
 
                           <div class="collapse" id="collapseBid">
-                            <div
-                              id="bodyBid"
-                              class="card card-body border-0 p-0 mt-3"
-                            >
-                              Some placeholder content for the collapse
-                              component. This panel is hidden by default but
-                              revealed when the user activates the relevant
-                              trigger.
+                            <div id="bodyBid" class="card card-body border-0 p-0 mt-3">
+                              Some placeholder content for the collapse component. This panel is hidden by default but
+                              revealed when the user activates the relevant trigger.
                             </div>
                           </div>
                           <div id="bidImgs"></div>

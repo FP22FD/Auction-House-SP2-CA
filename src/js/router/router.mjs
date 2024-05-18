@@ -1,10 +1,10 @@
 // import { init as initStart } from "../index/index.mjs";
 import { init as initAuthentication } from "../auth/authentication.mjs";
 import { init as initProfile } from "../profile/index.mjs";
-import { init as initDisplayListings } from "../feed/index.mjs";
-import { init as initCreateListing } from "../feed/createListing.mjs";
-import { init as initSearch } from "../feed/search.mjs";
-import { init as initNotAuthorized } from "../feed/notAuthorized.mjs";
+import { init as initDisplayListings } from "../listings/index.mjs";
+import { init as initCreateListing } from "../listings/createListing.mjs";
+import { init as initSearch } from "../listings/search.mjs";
+import { init as initNotAuthorized } from "../listings/notAuthorized.mjs";
 import { init as initLogout } from "../shared/logout.mjs";
 import { load } from "../shared/storage.mjs";
 import { APP_GITHUB_PAGES_REPO } from "../settings.mjs";
@@ -36,8 +36,8 @@ function router() {
       initLogout();
       break;
 
-    case "/feed/":
-    case "/feed/index.html":
+    case "/listings/":
+    case "/listings/index.html":
       if (isAuth) {
         initDisplayListings();
         initCreateListing();

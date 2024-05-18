@@ -59,7 +59,7 @@ body {
   top: 75%;
 }
 
-//feed page 1 column
+//listings page 1 column
 .card-img {
   object-fit: cover;
   width: 100%;
@@ -78,4 +78,9 @@ dialog::backdrop {
   // border: 0;
   background-color: #5a5a5a;
   opacity: 0.5;
+}
+
+dialog {
+  width: 600px;
+  margin: 32px auto;
 }

@@ -237,9 +237,7 @@ function listingsHandleOrderBy(ev) {
   const oby = select.value;
 
   if (oby === "title") {
-    dataProfile.sort((a, b) =>
-      a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1,
-    );
+    dataProfile.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1));
   } else if (oby === "newest") {
     dataProfile.sort(function (v1, v2) {
       return new Date(v2.created).getTime() - new Date(v1.created).getTime();
@@ -266,9 +264,7 @@ function bidsHandleOrderBy(ev) {
   const oby = select.value;
 
   if (oby === "title") {
-    bidsProfile.sort((a, b) =>
-      a.listing.title.toLowerCase() > b.listing.title.toLowerCase() ? 1 : -1,
-    );
+    bidsProfile.sort((a, b) => (a.listing.title.toLowerCase() > b.listing.title.toLowerCase() ? 1 : -1));
   } else if (oby === "newest") {
     bidsProfile.sort(function (v1, v2) {
       return new Date(v2.created).getTime() - new Date(v1.created).getTime();
@@ -294,8 +290,7 @@ export async function displayListings(username) {
     displaySpinner(true, "#spinnerListings");
     displayError(false, "#errorListings");
 
-    const url =
-      API_BASE + API_LISTINGS_PROFILE(username) + API_GET_LISTINGS_PARAMS;
+    const url = API_BASE + API_LISTINGS_PROFILE(username) + API_GET_LISTINGS_PARAMS;
 
     const response = await fetch(url, {
       headers: {
@@ -345,28 +340,20 @@ export async function updateListings(data) {
 
       /** @type {HTMLTemplateElement} */
       const template = document.querySelector("#listing");
-      const listing = /** @type {HTMLDivElement} */ (
-        template.content.cloneNode(true)
-      );
+      const listing = /** @type {HTMLDivElement} */ (template.content.cloneNode(true));
 
       listing.querySelector("article").dataset.id = String(item.id);
 
       const endsAtDate = new Date(item.endsAt);
-      countDown(
-        1 * 1000,
-        endsAtDate,
-        ({ distance, days, hours, minutes, seconds }) => {
-          const deadline = document.querySelector(
-            `article[data-id="${item.id}"] #deadlineListings`,
-          );
-          if (distance > 0) {
-            const dayOfWeek = daysOfWeek[endsAtDate.getDay()];
-            deadline.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s Left, ${dayOfWeek}`;
-          } else {
-            deadline.innerHTML = "EXPIRED";
-          }
-        },
-      );
+      countDown(1 * 1000, endsAtDate, ({ distance, days, hours, minutes, seconds }) => {
+        const deadline = document.querySelector(`article[data-id="${item.id}"] #deadlineListings`);
+        if (distance > 0) {
+          const dayOfWeek = daysOfWeek[endsAtDate.getDay()];
+          deadline.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s Left, ${dayOfWeek}`;
+        } else {
+          deadline.innerHTML = "EXPIRED";
+        }
+      });
 
       listing.querySelector("h5").innerText = item.seller.name; //item.id
       /** @type {HTMLImageElement} */
@@ -380,9 +367,7 @@ export async function updateListings(data) {
 
         /** @type {HTMLTemplateElement} */
         const templateCarousel = document.querySelector("#slider-carousel");
-        const CloneCarousel = /** @type {HTMLDivElement} */ (
-          templateCarousel.content.cloneNode(true)
-        );
+        const CloneCarousel = /** @type {HTMLDivElement} */ (templateCarousel.content.cloneNode(true));
 
         const carouselNewId = `carousel_${item.id}`;
         CloneCarousel.querySelector(".carousel").id = carouselNewId;
@@ -413,9 +398,7 @@ export async function updateListings(data) {
       }
 
       listing.querySelector("#bodyTitle").innerHTML = sanitize(item.title);
-      listing.querySelector("#bodyListing").innerHTML = sanitize(
-        item.description,
-      );
+      listing.querySelector("#bodyListing").innerHTML = sanitize(item.description);
 
       let date = new Date(item.created);
       /** @type Intl.DateTimeFormatOptions */
@@ -565,7 +548,7 @@ function updateProfile(avatarUrl, username, bio) {
   img.src = avatarUrl;
 
   /** @type {HTMLHeadingElement} */
-  const authorInfoName = document.querySelector("#author-info h2");
+  const authorInfoName = document.querySelector("#author-info h1");
   authorInfoName.innerText = username;
 
   /** @type {HTMLParagraphElement} */
@@ -690,36 +673,24 @@ export async function updateBids(data) {
 
       /** @type {HTMLTemplateElement} */
       const template = document.querySelector("#bid");
-      const bid = /** @type {HTMLDivElement} */ (
-        template.content.cloneNode(true)
-      );
+      const bid = /** @type {HTMLDivElement} */ (template.content.cloneNode(true));
 
       bid.querySelector("article").dataset.id = String(item.id);
 
       const endsAtDate = new Date(item.listing.endsAt);
-      countDown(
-        1 * 1000,
-        endsAtDate,
-        ({ distance, days, hours, minutes, seconds }) => {
-          const deadline = document.querySelector(
-            `article[data-id="${item.id}"] #deadlineBids`,
-          );
-          if (distance > 0) {
-            const dayOfWeek = daysOfWeek[endsAtDate.getDay()];
-            deadline.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s Left, ${dayOfWeek}`;
-          } else {
-            deadline.innerHTML = `<div class="text-danger fw-bold">EXPIRED<div/>`;
-          }
-        },
-      );
+      countDown(1 * 1000, endsAtDate, ({ distance, days, hours, minutes, seconds }) => {
+        const deadline = document.querySelector(`article[data-id="${item.id}"] #deadlineBids`);
+        if (distance > 0) {
+          const dayOfWeek = daysOfWeek[endsAtDate.getDay()];
+          deadline.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s Left, ${dayOfWeek}`;
+        } else {
+          deadline.innerHTML = `<div class="text-danger fw-bold">EXPIRED<div/>`;
+        }
+      });
 
-      bid.querySelector("#bodyBidTitle").innerHTML = sanitize(
-        item.listing.title,
-      );
+      bid.querySelector("#bodyBidTitle").innerHTML = sanitize(item.listing.title);
 
-      bid.querySelector("#bodyBid").innerHTML = sanitize(
-        item.listing.description,
-      );
+      bid.querySelector("#bodyBid").innerHTML = sanitize(item.listing.description);
 
       bid.querySelector("#amount").innerHTML = String(item.amount);
 
@@ -732,10 +703,7 @@ export async function updateBids(data) {
       };
 
       const placedAtDate = new Date(item.created);
-      let placedAtDateString = placedAtDate.toLocaleDateString(
-        "no-NO",
-        options,
-      );
+      let placedAtDateString = placedAtDate.toLocaleDateString("no-NO", options);
       bid.querySelector("#placedAt").innerHTML = placedAtDateString;
 
       // `BCP 47 language tag` => no-NO

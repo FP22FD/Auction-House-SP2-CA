@@ -5,20 +5,14 @@ export function countDown(intervalMs, date, callback) {
   // Ref: How to tick immediately: https://stackoverflow.com/a/20706004
   setTimeout(() => {
     const now = new Date().getTime();
-    const { distance, days, hours, minutes, seconds } = calcCountdown(
-      now,
-      countDownDate,
-    );
+    const { distance, days, hours, minutes, seconds } = calcCountdown(now, countDownDate);
     callback({ distance, days, hours, minutes, seconds });
   }, 0);
 
   const x = setInterval(function () {
     const now = new Date().getTime();
 
-    const { distance, days, hours, minutes, seconds } = calcCountdown(
-      now,
-      countDownDate,
-    );
+    const { distance, days, hours, minutes, seconds } = calcCountdown(now, countDownDate);
 
     callback({ distance, days, hours, minutes, seconds });
 
@@ -33,9 +27,7 @@ export function calcCountdown(start, end) {
   const distance = end - start;
 
   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-  );
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 

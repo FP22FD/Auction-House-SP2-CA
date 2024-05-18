@@ -4,8 +4,6 @@
 
 Noroff Course Assignment for Semester Project 2.
 
-![figma]()
-
 - [Brief](docs/SP2-brief.pdf)
 - [Criteria](docs/SP2-criteria.pdf)
 
@@ -105,9 +103,6 @@ The web application code has been validated using the following tools:
 - check css validity: <https://jigsaw.w3.org/css-validator/>
 - check redirect links: <https://validator.w3.org/checklink>
 - check accessibility: <https://www.accessibilitychecker.org/>
-
-NB: some empty CSS classes are flagged as errors by the [W3 validator](http://validator.w3.org).
-The issue is probably caused by [a bug](https://github.com/twbs/bootstrap/issues/36508) in the web tool.
 
 ## Dependencies
 

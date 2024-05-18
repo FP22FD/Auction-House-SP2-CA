@@ -2,11 +2,7 @@
 // import { get } from 'cypress/types/lodash';
 import "../../scss/styles.scss";
 
-import {
-  API_BASE,
-  API_LISTINGS,
-  API_GET_LISTINGS_PARAMS,
-} from "../settings.mjs";
+import { API_BASE, API_LISTINGS, API_GET_LISTINGS_PARAMS } from "../settings.mjs";
 import { ErrorHandler } from "../shared/errorHandler.mjs";
 import { displaySpinner } from "../shared/displaySpinner.mjs";
 import { displayError } from "../shared/displayErrorMsg.mjs";
@@ -26,6 +22,20 @@ import { load } from "../shared/storage.mjs";
  * @property {string} created
  * @property {string} updated
  * @property {string} endsAt
+ * @property {object[]} bids
+ * @property {string} bids.id
+ * @property {number} bids.amount
+ * @property {object} bids.bidder
+ * @property {string} bids.bidder.name
+ * @property {string} bids.bidder.email
+ * @property {string} bids.bidder.bio
+ * @property {object} bids.bidder.avatar
+ * @property {string} bids.bidder.avatar.url
+ * @property {string} bids.bidder.avatar.alt
+ * @property {object} bids.bidder.banner
+ * @property {string} bids.bidder.banner.url
+ * @property {string} bids.bidder.banner.alt
+ * @property {string} bids.created
  * @property {object} seller
  * @property {string} seller.name
  * @property {string} seller.email
@@ -147,9 +157,7 @@ function generateHtml(item) {
 
   /** @type {HTMLTemplateElement} */
   const template = document.querySelector("#listing");
-  const listing = /** @type {HTMLDivElement} */ (
-    template.content.cloneNode(true)
-  );
+  const listing = /** @type {HTMLDivElement} */ (template.content.cloneNode(true));
 
   listing.querySelector("article").dataset.id = item.id;
 
@@ -165,8 +173,7 @@ function generateHtml(item) {
   const endsAtDate = new Date(endsAt);
   if (endsAtDate > new Date()) {
     let endsAtDateString = endsAtDate.toLocaleDateString("no-NO", options);
-    listing.querySelector("#deadline").innerHTML =
-      endsAtDateString + " - " + "Left";
+    listing.querySelector("#deadline").innerHTML = `Expires ${endsAtDateString}`;
   } else {
     listing.querySelector("#deadline").innerHTML = "EXPIRED";
   }
@@ -196,34 +203,49 @@ function generateHtml(item) {
     bodyText.innerHTML = sanitize(description);
   }
 
+  const history = listing.querySelector("#history");
+  const hasBids = item.bids.length > 0;
+  if (!hasBids || !isAuth) {
+    history.classList.add("d-none");
+  }
+
   //The entry point code for bid on listing
   if (isAuth) {
+    if (hasBids) {
+      const bids = item.bids.sort((v1, v2) => new Date(v2.created).valueOf() - new Date(v1.created).valueOf());
+      const maxBid = bids[0].amount;
+
+      /** @type {HTMLInputElement} */
+      const amountBid = listing.querySelector("#amountBid");
+      amountBid.min = String(maxBid + 0.01);
+
+      const bidsHtml = bids.map((bid) => {
+        const date = new Date(bid.created).toLocaleDateString("no-NO", options);
+        return `<dt class="col-3"><span><i class="bi bi-gem"></i></span> ${bid.amount}</dt><dd class="col-9">${date} by ${bid.bidder.name}</dd>`;
+      });
+      history.querySelector("dl").innerHTML = bidsHtml.join("");
+    }
+
     listing.querySelector(`#btnPlaceBid`).classList.remove("d-none");
 
     listing.querySelector(`#btnPlaceBid`).addEventListener("click", (ev) => {
       ev.preventDefault();
 
-      const placeBid = document.querySelector(
-        `article[data-id="${item.id}"] #btnPlaceBid`,
-      );
+      const placeBid = document.querySelector(`article[data-id="${item.id}"] #btnPlaceBid`);
       placeBid.classList.add("d-none");
 
-      const PlaceOnListing = document.querySelector(
-        `article[data-id="${item.id}"] #PlaceOnListing`,
-      );
+      const PlaceOnListing = document.querySelector(`article[data-id="${item.id}"] #PlaceOnListing`);
       PlaceOnListing.classList.remove("d-none");
       PlaceOnListing.classList.add("d-flex");
     });
 
-    listing
-      .querySelector("#createBid")
-      .addEventListener("submit", async (ev) => {
-        ev.preventDefault();
+    listing.querySelector("#createBid").addEventListener("submit", async (ev) => {
+      ev.preventDefault();
 
-        console.log(item.id);
+      console.log(item.id);
 
-        handleBidSubmit(item.id, ev);
-      });
+      handleBidSubmit(item.id, ev);
+    });
   } else {
     listing.querySelector(`#linkPlaceBid`).classList.remove("d-none");
   }
@@ -233,9 +255,7 @@ function generateHtml(item) {
 
     /** @type {HTMLTemplateElement} */
     const templateCarousel = document.querySelector("#slider-carousel");
-    const CloneCarousel = /** @type {HTMLDivElement} */ (
-      templateCarousel.content.cloneNode(true)
-    );
+    const CloneCarousel = /** @type {HTMLDivElement} */ (templateCarousel.content.cloneNode(true));
 
     const carouselNewId = `carousel_${item.id}`;
     CloneCarousel.querySelector(".carousel").id = carouselNewId;

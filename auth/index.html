@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Auction House app. Join the community by logging in or registering."
+      content="Auction House website. Get the best deals and more by logging in or registering."
     />
     <title>Auction House | Authentication page</title>
-    <link type="image/x-icon" rel="stylesheet" href="../favicon.ico" />
+    <link type="image/x-icon" rel="icon" href="../favicon.ico" />
 
     <script type="module" src="/src/js/router/router.mjs"></script>
 
@@ -35,21 +36,12 @@
       <div class="d-flex align-items-center justify-content-center vh-100">
         <div class="row w-100">
           <div class="col-12 col-xl-6 d-none d-xl-block m-auto">
-            <div
-              class="card justify-content-center align-items-center border-0"
-            >
+            <div class="card justify-content-center align-items-center border-0">
               <div class="text-center p-4">
                 <p class="h6 fw-bold">Auction House for mobile devices</p>
-                <p class="small">
-                  Install our official mobile app and shop or sell anytime and
-                  anywhere.
-                </p>
+                <p class="small">Install our official mobile app and shop or sell anytime and anywhere.</p>
               </div>
-              <img
-                src="/assets/mobile-img.png"
-                alt="Mobile app image"
-                class="card-img-bottom max-vh-50 w-auto"
-              />
+              <img src="/assets/mobile-img.png" alt="Mobile app image" class="card-img-bottom max-vh-50 w-auto" />
             </div>
           </div>
 
@@ -59,10 +51,7 @@
                 <nav class="navbar navbar-expand-lg sticky-top mx-3">
                   <div class="container-fluid d-flex justify-content-center">
                     <p class="h2">
-                      <a
-                        class="navbar-brand object-fit-cover"
-                        href="../feed/index.html"
-                      >
+                      <a class="navbar-brand object-fit-cover" href="../listings/index.html">
                         <img src="/logo.svg" alt="logo" height="50" />
                       </a>
                     </p>
@@ -107,10 +96,7 @@
                     </li>
                   </ul>
 
-                  <div
-                    class="tab-content border border-top-0"
-                    id="myTabContent"
-                  >
+                  <div class="tab-content border border-top-0" id="myTabContent">
                     <div
                       class="tab-pane show active"
                       id="login-tab-pane"
@@ -146,19 +132,11 @@
                           />
 
                           <div class="input-group-text rounded-end">
-                            <i
-                              id="hidePassword"
-                              class="bi bi-eye-slash d-flex"
-                            ></i>
-                            <i
-                              id="showPassword"
-                              class="bi bi-eye-fill d-none"
-                            ></i>
+                            <i id="hidePassword" class="bi bi-eye-slash d-flex"></i>
+                            <i id="showPassword" class="bi bi-eye-fill d-none"></i>
                           </div>
 
-                          <label for="loginPassword" class="visually-hidden"
-                            >Password</label
-                          >
+                          <label for="loginPassword" class="visually-hidden">Password</label>
                         </div>
 
                         <div class="d-flex justify-content-center">
@@ -167,11 +145,7 @@
                             class="btn btn-outline-primary shadow-sm mt-3 align-middle d-flex gap-3 align-items-center fw-bold"
                           >
                             Login
-                            <span
-                              id="spinnerLogin"
-                              class="spinner-border spinner-border-sm text- d-none"
-                              role="status"
-                            >
+                            <span id="spinnerLogin" class="spinner-border spinner-border-sm text- d-none" role="status">
                               <span class="visually-hidden">Loading...</span>
                             </span>
                           </button>
@@ -267,9 +241,7 @@
                 </div>
               </main>
 
-              <footer
-                class="bg-secondary text-white text-center vstack py-3 px-0"
-              >
+              <footer class="bg-secondary text-white text-center vstack py-3 px-0">
                 <span> Copyright© 2024 Auction House.</span>
                 <span>All Rights Reserved</span>
               </footer>

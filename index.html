@@ -2,13 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Auction House app. Join the community by logging in or registering."
+      content="Auction House website. Come in and check out the incredible offers on the best auction site."
     />
     <title>Auction House | Home page</title>
-    <link type="image/x-icon" rel="stylesheet" href="./favicon.ico" />
+    <link type="image/x-icon" rel="icon" href="./favicon.ico" />
 
     <script type="module" src="./src/js/index/index.mjs"></script>
 
@@ -35,21 +36,14 @@
       <div class="d-flex align-items-center justify-content-center vh-100">
         <div class="row w-100">
           <div class="col-12 col-xl-6 m-auto d-none d-xl-block">
-            <div
-              class="card justify-content-center align-items-center border-0"
-            >
+            <div class="card justify-content-center align-items-center border-0">
               <div class="text-center p-4">
                 <p class="h6 fw-bold">Auction House for mobile devices</p>
                 <p class="small">
-                  Soon, you'll be able to buy and sell anytime, anywhere with
-                  our official mobile app!
+                  Soon, you'll be able to buy and sell anytime, anywhere with our official mobile app!
                 </p>
               </div>
-              <img
-                src="/assets/mobile-img.png"
-                alt="Mobile app image"
-                class="card-img-bottom max-vh-50 w-auto"
-              />
+              <img src="/assets/mobile-img.png" alt="Mobile app image" class="card-img-bottom max-vh-50 w-auto" />
             </div>
           </div>
 
@@ -59,10 +53,7 @@
                 <nav class="navbar navbar-expand-lg sticky-top mx-3">
                   <div class="container-fluid d-flex justify-content-center">
                     <p class="h2">
-                      <a
-                        class="navbar-brand object-fit-cover"
-                        href="./feed/index.html"
-                      >
+                      <a class="navbar-brand object-fit-cover" href="./listings/index.html">
                         <img src="/logo.svg" alt="logo" height="50" />
                       </a>
                     </p>
@@ -80,43 +71,20 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                      <!-- //TODO:cancel the tag a and change to button tag bellow in javascript! -->
                       <a
                         class="btn btn-outline-primary shadow-sm mt-3 align-middle d-flex gap-3 align-items-center fw-bold"
-                        href="./feed/index.html"
+                        href="./listings/index.html"
                         role="button"
                         >Let's start</a
                       >
-
-                      <!-- <button type="submit" class="btn btn-outline-primary shadow-sm mt-3 align-middle d-flex gap-3 align-items-center fw-bold">
-                        Let's start
-                        <span id="spinnerLogin" class="spinner-border spinner-border-sm text- d-none" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                        </span>
-                      </button> -->
                     </div>
                   </div>
 
-                  <div
-                    class="d-flex flex-column align-items-center text-secondary small"
-                  >
-                    <p class="mb-0">
-                      Register or log in to access all of Auction House's
-                      features.
-                    </p>
+                  <div class="d-flex flex-column align-items-center text-secondary small">
+                    <p class="mb-0">Register or log in to access all of Auction House's features.</p>
                     <div class="d-flex gap-3">
-                      <a
-                        id="btnLogin"
-                        class="small fw-bold"
-                        href="./auth/index.html"
-                        >Login</a
-                      >
-                      <a
-                        id="btnRegister"
-                        class="small fw-bold"
-                        href="./auth/index.html"
-                        >Register</a
-                      >
+                      <a id="btnLogin" class="small fw-bold" href="./auth/index.html">Login</a>
+                      <a id="btnRegister" class="small fw-bold" href="./auth/index.html">Register</a>
                     </div>
                   </div>
 
@@ -124,9 +92,7 @@
                 </div>
               </main>
 
-              <footer
-                class="bg-secondary text-white text-center vstack py-3 px-0"
-              >
+              <footer class="bg-secondary text-white text-center vstack py-3 px-0">
                 <span> Copyright© 2024 Auction House.</span>
                 <span>All Rights Reserved</span>
               </footer>
