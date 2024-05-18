@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "docs": "jsdoc -c ./conf.json -r",
-    "format": "prettier -w src/**/*.js",
+    "format": "prettier -w src/**/*.{js,mjs}",
     "unit-test": "vitest run",
     "test-watch": "vitest",
     "e2e-test": "npm run test-e2e",
