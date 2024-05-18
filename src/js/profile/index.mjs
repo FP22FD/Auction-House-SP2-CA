@@ -565,7 +565,7 @@ function updateProfile(avatarUrl, username, bio) {
   img.src = avatarUrl;
 
   /** @type {HTMLHeadingElement} */
-  const authorInfoName = document.querySelector("#author-info h2");
+  const authorInfoName = document.querySelector("#author-info h1");
   authorInfoName.innerText = username;
 
   /** @type {HTMLParagraphElement} */
