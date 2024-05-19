@@ -1,5 +1,27 @@
+/** @typedef CountdownResult
+ * @type {object}
+ * @property {number} distance
+ * @property {number} days
+ * @property {number} hours
+ * @property {number} minutes
+ * @property {number} seconds
+ */
+
+/**
+ * Callback for adding two numbers.
+ *
+ * @callback CountdownCallback
+ * @param {CountdownResult} data - A countdown instance.
+ */
+
 // Ref: https://www.w3schools.com/howto/howto_js_countdown.asp
 
+/**
+ *
+ * @param {number} intervalMs Interval in milliseconds to calculate distance between now and the specified date.
+ * @param {Date} date The reference date.
+ * @param {CountdownCallback} callback
+ */
 export function countDown(intervalMs, date, callback) {
   const countDownDate = date.getTime();
 
@@ -23,6 +45,12 @@ export function countDown(intervalMs, date, callback) {
   }, intervalMs);
 }
 
+/**
+ * Calculate distance and date parts between two dates.
+ * @param {number} start
+ * @param {number} end
+ * @returns {CountdownResult}
+ */
 export function calcCountdown(start, end) {
   const distance = end - start;
 

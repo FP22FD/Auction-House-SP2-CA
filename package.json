@@ -8,7 +8,7 @@
     "dev": "vite --port 8080 --host 127.0.0.1 --open",
     "build": "vite build",
     "preview": "vite preview",
-    "docs": "jsdoc -c ./conf.json -r",
+    "docs": "jsdoc -c ./conf.json -r --destination ./public/out/",
     "format": "prettier -w src/**/*.{js,mjs}",
     "unit-test": "vitest run",
     "test-watch": "vitest",

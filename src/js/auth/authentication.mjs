@@ -86,7 +86,7 @@ function addEventToRegister() {
 }
 
 /**
- * @description Set the input type text<=>password.
+ * @description Set the input type between text and password.
  * @method displayLoginPassword
  */
 function displayLoginPassword() {

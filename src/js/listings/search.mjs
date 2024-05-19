@@ -17,6 +17,20 @@ import { displaySpinner } from "../shared/displaySpinner.mjs";
  * @property {string} created
  * @property {string} updated
  * @property {string} endsAt
+ * @property {object[]} bids
+ * @property {string} bids.id
+ * @property {number} bids.amount
+ * @property {object} bids.bidder
+ * @property {string} bids.bidder.name
+ * @property {string} bids.bidder.email
+ * @property {string} bids.bidder.bio
+ * @property {object} bids.bidder.avatar
+ * @property {string} bids.bidder.avatar.url
+ * @property {string} bids.bidder.avatar.alt
+ * @property {object} bids.bidder.banner
+ * @property {string} bids.bidder.banner.url
+ * @property {string} bids.bidder.banner.alt
+ * @property {string} bids.created
  * @property {object} seller
  * @property {string} seller.name
  * @property {string} seller.email

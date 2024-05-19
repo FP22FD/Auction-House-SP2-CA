@@ -16,6 +16,7 @@ Noroff Course Assignment for Semester Project 2.
 - [Hosted Demo](https://fp22fd.github.io/Auction-House-SP2-CA/)
 
 NB. There is a slight difference between the prototype and the implemented website due to some improvements.
+Breakpoints start from the screen width 375px.
 
 ## Live app
 
@@ -92,9 +93,11 @@ The main purpose of this CA is to take the skills learned over the past three se
 ## JSDOC
 
 The code is documented using `JsDocs`.
-The documentation can be generated in `/out/index` using:
+The documentation can be generated in `/public/out/index` using:
 
 > npm run docs
+
+The documentation will be available in `/Your-Github-Repo/out/index.html`, for example <https://fp22fd.github.io/Auction-House-SP2-CA/out/index.html>.
 
 ## Validation
 
