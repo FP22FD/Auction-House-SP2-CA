@@ -1,4 +1,5 @@
 // Ref: https://www.w3schools.com/howto/howto_js_countdown.asp
+
 export function countDown(intervalMs, date, callback) {
   const countDownDate = date.getTime();
 
@@ -22,7 +23,6 @@ export function countDown(intervalMs, date, callback) {
   }, intervalMs);
 }
 
-// TODO: make unit test
 export function calcCountdown(start, end) {
   const distance = end - start;
 

@@ -5,7 +5,6 @@ import { load } from "./storage.mjs";
  * @method checkUserAuth
  */
 export function checkUserAuth() {
-  // const checkAccessToken = localStorage.getItem("key");
   const checkAccessToken = load("token");
 
   if (!checkAccessToken) {
