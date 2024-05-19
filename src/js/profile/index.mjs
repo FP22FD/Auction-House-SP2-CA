@@ -194,24 +194,11 @@ export function init() {
 
     updateProfile(avatarUrl, username, bio);
 
-    // /** @type {HTMLImageElement} */
-    // const img = document.querySelector("#author-image");
-    // img.src = avatarUrl;
-
-    // /** @type {HTMLHeadingElement} */
-    // const authorInfoName = document.querySelector("#author-info h2");
-    // authorInfoName.innerText = username;
-
-    // /** @type {HTMLParagraphElement} */
-    // const authorInfoBio = document.querySelector("#author-info p");
-    // authorInfoBio.innerHTML = bio;
-
     displayListings(username);
 
     displayBids(username);
 
     fetchUserMetaData(username);
-    // fetchUpdateProfile(username, avatarUrl);
   }
 
   /** @type {HTMLSelectElement} */
@@ -430,7 +417,7 @@ export async function updateListings(data) {
  * @async
  * @function fetchUserMetaData
  * @param {string} username  The user name
- * @returns {Promise<GetProfileDataResponse|null|undefined>}
+ * @returns {Promise<GetProfileDataResponse|null|undefined>} If response is ok, return profile meta info. If response is not ok, return null. Returns undefined for unexpected errors.
  * */
 export async function fetchUserMetaData(username) {
   try {
@@ -473,9 +460,6 @@ export async function fetchUserMetaData(username) {
  * @param {GetProfileDataResponse} profileInfo user profile info
  */
 async function displayUserMetaData(profileInfo) {
-  // /** @type {GetProfileDataResponse} */
-  // profileInfo;
-
   /** @type {HTMLDivElement} */
   const totFollowing = document.querySelector("#totWins");
   totFollowing.innerText = String(profileInfo._count.wins);
@@ -527,7 +511,6 @@ async function addEventToEditProfile() {
     avatarUrl = form.elements["avatarUrl"].value;
     const result = await fetchUpdateProfile(name, avatarUrl);
     if (result) {
-      // await fetchUserMetaData(name);
       updateProfile(result.avatar.url, result.name, result.bio);
 
       dialog.close();
@@ -562,7 +545,7 @@ function updateProfile(avatarUrl, username, bio) {
  * @function fetchUpdateProfile
  * @param {string} username  The user name
  * @param {string} avatarUrl  The url of the user image/avatar
- * @returns {Promise<GetProfileDataResponse2|null|undefined>}
+ * @returns {Promise<GetProfileDataResponse2|null|undefined>} If response is ok, return profile info. If response is not ok, return null. Returns undefined for unexpected errors.
  * */
 export async function fetchUpdateProfile(username, avatarUrl) {
   try {
@@ -658,7 +641,7 @@ export async function displayBids(username) {
 /**
  * @description Map a listing to html content
  * @method updateBids
- * @param {Array<GetProfileBidsDataResponse>} data The user listings info.
+ * @param {Array<GetProfileBidsDataResponse>} data The user bids
  */
 export async function updateBids(data) {
   /** @type {HTMLDivElement} */

@@ -66,6 +66,12 @@ export function init() {
 /** @type {Array<GetAuctionListingsDataResponse>} */
 let data = [];
 
+/**
+ * @description Send a request to API
+ * @async
+ * @function displayListings
+ * @returns {Promise<GetAuctionListingsDataResponse[]|null|undefined>}If response is ok, return listings info. If response is not ok, return null. Returns undefined for unexpected errors.
+ * */
 export async function displayListings() {
   try {
     displaySpinner(true, "#spinnerListings");
@@ -234,8 +240,6 @@ function generateHtml(item) {
 
     listing.querySelector("#createBid").addEventListener("submit", async (ev) => {
       ev.preventDefault();
-
-      console.log(item.id);
 
       handleBidSubmit(item.id, ev);
     });
