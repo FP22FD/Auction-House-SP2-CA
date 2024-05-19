@@ -113,7 +113,6 @@ async function createListing(listingData) {
     if (response.ok) {
       /** @type {createListingResponse} */
       const listing = await response.json();
-      console.log("Create listing API", listing);
 
       return listing;
     }
@@ -215,5 +214,4 @@ function showListingChar(ev) {
   characters.textContent = `${content.length}/280`;
 
   content.trim();
-  console.log(content);
 }

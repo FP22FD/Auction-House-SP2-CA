@@ -55,7 +55,6 @@ export async function login(email, password) {
       return userInfo;
     }
 
-    // handle http response codes
     const eh = new ErrorHandler(response);
     const msg = await eh.getErrorMessage();
 

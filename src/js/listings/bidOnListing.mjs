@@ -127,7 +127,6 @@ async function createBid(listingId, amount) {
     if (response.ok) {
       /** @type {createBidResponse} */
       const bid = await response.json();
-      console.log("Create bid API", bid);
 
       return bid;
     }
@@ -162,7 +161,7 @@ export async function handleBidSubmit(listingId, ev) {
     const amount = txtAmount.valueAsNumber;
 
     const bid = await createBid(listingId, amount);
-    console.log(bid);
+
     if (bid) {
       statusMsg(listingId, true, "Well done! You have created a new bid.");
 

@@ -7,7 +7,8 @@ Noroff Course Assignment for Semester Project 2.
 - [Brief](docs/SP2-brief.pdf)
 - [Criteria](docs/SP2-criteria.pdf)
 
-- [Design Prototype](https://www.figma.com/proto/VT0PmzsvgFgwQ1kLojZyuy/5.Semester-project-SP2?page-id=4755%3A981&node-id=9076-360306&viewport=-447%2C388%2C0.32&t=LqidkfQt2smkSLWH-1&scaling=scale-down&starting-point-node-id=9068%3A102840)
+- [Design Prototype Desktop](https://www.figma.com/proto/VT0PmzsvgFgwQ1kLojZyuy/5.Semester-project-SP2?page-id=4755%3A981&node-id=9076-360306&viewport=-447%2C388%2C0.32&t=LqidkfQt2smkSLWH-1&scaling=scale-down&starting-point-node-id=9068%3A102840)
+- [Design Prototype Mobile](https://www.figma.com/proto/VT0PmzsvgFgwQ1kLojZyuy/5.Semester-project-SP2?page-id=4755%3A982&node-id=9090-369768&viewport=377%2C477%2C0.28&t=Wgpx1IsigXp0ehjA-1&scaling=scale-down&starting-point-node-id=9090%3A369768)
 - [Style Guide](https://www.figma.com/proto/VT0PmzsvgFgwQ1kLojZyuy/5.Semester-project-SP2?page-id=9046%3A70050&node-id=9046-97385&viewport=185%2C-580%2C0.24&t=yZK5KSGQy5cTOhDV-1&scaling=scale-down&starting-point-node-id=9046%3A97385)
 - [Kanban Board](https://github.com/users/FP22FD/projects/7)
 - [Gantt Chart](https://github.com/users/FP22FD/projects/7/views/4)

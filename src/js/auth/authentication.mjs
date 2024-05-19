@@ -20,6 +20,10 @@ export function init() {
   hidePws.addEventListener("click", displayLoginPassword);
 }
 
+/**
+ * @description Attaches an event handler to the login form element.
+ * @method addEventToLogin
+ */
 function addEventToLogin() {
   const loginForm = document.querySelector("#login-form");
   loginForm.addEventListener("submit", async (ev) => {
@@ -43,6 +47,10 @@ function addEventToLogin() {
   });
 }
 
+/**
+ * @description Attaches an event handler to the register form element.
+ * @function addEventToRegister
+ */
 function addEventToRegister() {
   const registerForm = document.querySelector("#register-form");
   registerForm.addEventListener("submit", async (ev) => {
