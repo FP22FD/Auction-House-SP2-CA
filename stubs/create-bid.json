@@ -1,0 +1,21 @@
+{
+    "data": {
+        "id": "df403756-b8e0-4fd5-8e34-bc064912bd8e",
+        "title": "Plantasia",
+        "description": "The music on this album was composed specifically for plants to listen to. Garson was inspired by his wife, who grew many plants in their home",
+        "media": [
+            {
+                "url": "https://images.unsplash.com/photo-1691756357913-6be645bc3486?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "alt": "No description provided"
+            }
+        ],
+        "tags": [],
+        "created": "2024-12-16T10:17:30.871Z",
+        "updated": "2024-12-16T10:17:30.871Z",
+        "endsAt": "2024-12-17T10:16:00.000Z",
+        "_count": {
+            "bids": 2
+        }
+    },
+    "meta": {}
+}

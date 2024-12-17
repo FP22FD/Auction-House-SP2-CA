@@ -1,0 +1,17 @@
+{
+    "data": {
+        "name": "Carol_Connor",
+        "email": "carolconnor@stud.noroff.no",
+        "bio": "Digital creator Unveiling everyday tech mysteries Front-end student @Noroff",
+        "avatar": {
+            "url": "https://images.unsplash.com/photo-1497030947858-3f40f1508e84?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "alt": "Author image"
+        },
+        "banner": {
+            "url": "https://images.unsplash.com/photo-1654949003673-5a7039e34426?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "alt": "Author image"
+        },
+        "credits": 660
+    },
+    "meta": {}
+}

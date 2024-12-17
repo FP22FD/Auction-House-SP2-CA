@@ -1,0 +1,23 @@
+{
+    "data": {
+        "id": "5d0fc6a3-8274-4679-9a1c-2354cd6696ca",
+        "title": "Bouquet of roses",
+        "description": "Wid bouquet of roses",
+        "media": [
+            {
+                "url": "https://images.unsplash.com/photo-1487530811176-3780de880c2d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "alt": "Unsplash photo flower"
+            }
+        ],
+        "tags": [
+            "Flower"
+        ],
+        "created": "2024-12-16T13:07:40.398Z",
+        "updated": "2024-12-16T13:07:40.398Z",
+        "endsAt": "2025-05-06T16:33:27.000Z",
+        "_count": {
+            "bids": 0
+        }
+    },
+    "meta": {}
+}

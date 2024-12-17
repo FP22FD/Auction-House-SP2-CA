@@ -1,0 +1,151 @@
+{
+    "data": [
+        {
+            "id": "d160a9cf-fd88-41cc-ab17-d0bd103cd9d6",
+            "amount": 100,
+            "bidder": {
+                "name": "Carol_Connor",
+                "email": "carolconnor@stud.noroff.no",
+                "bio": null,
+                "avatar": {
+                    "url": "https://images.unsplash.com/photo-1521676259650-675b5bfec1ae?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "alt": "Author image"
+                },
+                "banner": {
+                    "url": "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=500&w=1500",
+                    "alt": "A blurry multi-colored rainbow background"
+                }
+            },
+            "created": "2024-12-16T13:13:06.486Z",
+            "listing": {
+                "id": "df403756-b8e0-4fd5-8e34-bc064912bd8e",
+                "title": "Plantasia",
+                "description": "The music on this album was composed specifically for plants to listen to. Garson was inspired by his wife, who grew many plants in their home",
+                "media": [
+                    {
+                        "url": "https://images.unsplash.com/photo-1691756357913-6be645bc3486?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "alt": "No description provided"
+                    }
+                ],
+                "tags": [],
+                "created": "2024-12-16T10:17:30.871Z",
+                "updated": "2024-12-16T10:17:30.871Z",
+                "endsAt": "2024-12-17T10:16:00.000Z"
+            }
+        },
+        {
+            "id": "948dd2cc-09b4-479a-8ca6-c28d05ae31f4",
+            "amount": 100,
+            "bidder": {
+                "name": "Carol_Connor",
+                "email": "carolconnor@stud.noroff.no",
+                "bio": null,
+                "avatar": {
+                    "url": "https://images.unsplash.com/photo-1521676259650-675b5bfec1ae?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "alt": "Author image"
+                },
+                "banner": {
+                    "url": "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=500&w=1500",
+                    "alt": "A blurry multi-colored rainbow background"
+                }
+            },
+            "created": "2024-12-16T12:56:49.706Z",
+            "listing": {
+                "id": "faeac5b8-75fa-450b-b1df-6dd4a5353c20",
+                "title": "Antique Wooden Chair",
+                "description": "A beautifully handcrafted antique wooden chair from the 19th century. Perfect for collectors and interior enthusiasts.",
+                "media": [
+                    {
+                        "url": "https://www.englishdecorations.com/media/catalog/product/cache/47aa0f5d7a841bf5253ca3c19a38a0ec/d/i/directors-stand-chair-1.jpg",
+                        "alt": "User-provided data"
+                    }
+                ],
+                "tags": [
+                    "antique",
+                    "vintage"
+                ],
+                "created": "2024-12-16T02:32:06.859Z",
+                "updated": "2024-12-16T02:32:06.859Z",
+                "endsAt": "2024-12-17T02:32:00.000Z"
+            }
+        },
+        {
+            "id": "d8306530-50c2-42cc-a82e-2ae882522605",
+            "amount": 60,
+            "bidder": {
+                "name": "Carol_Connor",
+                "email": "carolconnor@stud.noroff.no",
+                "bio": null,
+                "avatar": {
+                    "url": "https://images.unsplash.com/photo-1521676259650-675b5bfec1ae?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "alt": "Author image"
+                },
+                "banner": {
+                    "url": "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=500&w=1500",
+                    "alt": "A blurry multi-colored rainbow background"
+                }
+            },
+            "created": "2024-12-16T12:56:36.920Z",
+            "listing": {
+                "id": "d38f62be-5fc0-4646-ab48-e12abec5079e",
+                "title": "tree of life pt 2",
+                "description": "this is a tree of life",
+                "media": [
+                    {
+                        "url": "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg",
+                        "alt": ""
+                    }
+                ],
+                "tags": [
+                    "watch",
+                    "jewlery"
+                ],
+                "created": "2024-12-16T09:53:35.802Z",
+                "updated": "2024-12-16T09:53:52.644Z",
+                "endsAt": "2024-12-31T09:50:00.000Z"
+            }
+        },
+        {
+            "id": "8d9bf79f-934f-44c9-a747-dd44a035cb5e",
+            "amount": 80,
+            "bidder": {
+                "name": "Carol_Connor",
+                "email": "carolconnor@stud.noroff.no",
+                "bio": null,
+                "avatar": {
+                    "url": "https://images.unsplash.com/photo-1521676259650-675b5bfec1ae?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "alt": "Author image"
+                },
+                "banner": {
+                    "url": "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=500&w=1500",
+                    "alt": "A blurry multi-colored rainbow background"
+                }
+            },
+            "created": "2024-12-16T12:56:25.462Z",
+            "listing": {
+                "id": "df403756-b8e0-4fd5-8e34-bc064912bd8e",
+                "title": "Plantasia",
+                "description": "The music on this album was composed specifically for plants to listen to. Garson was inspired by his wife, who grew many plants in their home",
+                "media": [
+                    {
+                        "url": "https://images.unsplash.com/photo-1691756357913-6be645bc3486?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        "alt": "No description provided"
+                    }
+                ],
+                "tags": [],
+                "created": "2024-12-16T10:17:30.871Z",
+                "updated": "2024-12-16T10:17:30.871Z",
+                "endsAt": "2024-12-17T10:16:00.000Z"
+            }
+        }
+    ],
+    "meta": {
+        "isFirstPage": true,
+        "isLastPage": true,
+        "currentPage": 1,
+        "previousPage": null,
+        "nextPage": null,
+        "pageCount": 1,
+        "totalCount": 4
+    }
+}

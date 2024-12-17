@@ -1,0 +1,60 @@
+{
+    "data": [
+        {
+            "id": "e62dfca1-7ef8-401b-8bc3-9b581e9be7b9",
+            "title": "A bottle with northern light",
+            "description": "Bottles of captured northern lights",
+            "media": [
+                {
+                    "url": "https://blenderartists.org/uploads/default/original/4X/1/b/3/1b3dc020012d48efcd6222043b19aa2adb790d37.jpeg",
+                    "alt": "Northern light on bottle"
+                },
+                {
+                    "url": "https://images.unsplash.com/photo-1514563229751-01c68026cb49?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "alt": "Northern light"
+                },
+                {
+                    "url": "https://www.glodexplorer.no/wp-content/uploads/2013/10/nordlys_paaskeland.jpg",
+                    "alt": "Northern light"
+                },
+                {
+                    "url": "https://nordnorsk.vitensenter.no/sites/default/files/2022-10/cover-image.jpg",
+                    "alt": "Lights"
+                }
+            ],
+            "tags": [
+                "bottles",
+                "northern lights",
+                "colors"
+            ],
+            "created": "2024-09-16T10:49:09.805Z",
+            "updated": "2024-09-17T12:54:33.108Z",
+            "endsAt": "2024-09-18T10:48:00.000Z",
+            "seller": {
+                "name": "Knut",
+                "email": "Knut@stud.noroff.no",
+                "bio": "Birds man, fetching birds and stuff ☺️☺️☺️☺️☺️",
+                "avatar": {
+                    "url": "https://images.unsplash.com/photo-1470116073782-48ae2ccd8ffd?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "alt": "Avatar img by Knut"
+                },
+                "banner": {
+                    "url": "https://images.unsplash.com/photo-1530728327726-b504480e42ec?q=80&w=2664&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "alt": "Banner img by Knut"
+                }
+            },
+            "_count": {
+                "bids": 14
+            }
+        }
+    ],
+    "meta": {
+        "isFirstPage": true,
+        "isLastPage": true,
+        "currentPage": 1,
+        "previousPage": null,
+        "nextPage": null,
+        "pageCount": 1,
+        "totalCount": 1
+    }
+}
